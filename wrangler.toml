@@ -1,6 +1,7 @@
-# Cloudflare Pages (static Astro output)
-# Deploy with: npm run deploy
-# Do NOT use `wrangler deploy` — that is for Workers.
+# Workers static assets (Astro SSG → ./dist)
+# Deploy command: npx wrangler deploy
 name = "pictojxl"
 compatibility_date = "2026-10-26"
-pages_build_output_dir = "./dist"
+
+[assets]
+directory = "./dist"

@@ -23,18 +23,14 @@ npm run build
 npm run preview
 ```
 
-## Cloudflare Pages
+## Cloudflare (Workers static assets)
 
-This is a **Pages** project (static `dist/`), not a Worker.
+Astro builds static files into `./dist`. Wrangler uploads that folder as an assets-only Worker (`[assets]` in `wrangler.toml`).
 
 | Setting | Value |
 | --- | --- |
-| Framework | Astro |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
-| Deploy command | leave empty (Git integration) **or** `npx wrangler pages deploy` |
-
-Do **not** use `wrangler deploy` — that expects a Worker entrypoint and fails with “Missing entry-point”.
+| Deploy command | `npx wrangler deploy` |
 
 ```bash
 npm run deploy
