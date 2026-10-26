@@ -10,7 +10,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "pages:deploy": "wrangler pages deploy",
+    "deploy": "npm run build && wrangler pages deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.153.0"
   },
   "dependencies": {
     "@astrojs/vue": "^7.1.2",

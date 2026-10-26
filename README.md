@@ -23,4 +23,21 @@ npm run build
 npm run preview
 ```
 
+## Cloudflare Pages
+
+This is a **Pages** project (static `dist/`), not a Worker.
+
+| Setting | Value |
+| --- | --- |
+| Framework | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Deploy command | leave empty (Git integration) **or** `npx wrangler pages deploy` |
+
+Do **not** use `wrangler deploy` — that expects a Worker entrypoint and fails with “Missing entry-point”.
+
+```bash
+npm run deploy
+```
+
 Site URL: `https://pictojxl.com`
