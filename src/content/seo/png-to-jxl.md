@@ -1,65 +1,65 @@
 ---
-title: "Convert PNG to JXL Online – Lossless Next-Gen Compression"
-description: "Convert PNG to JXL online with lossless or high-quality modes. Keep alpha transparency, cut file size, and encode privately in your browser."
-h1: "Convert PNG to JXL Online – Lossless Next-Gen Compression"
-subheadline: "Compress transparent PNG graphics to JPEG XL with lossless or high-quality modes. Private browser encoding with no uploads."
-dropzoneLabel: "Drop PNG files to convert to JXL"
-acceptHint: "Static PNG screenshots, UI assets, and graphics with alpha"
+title: "PNG to JPEG XL — Keep Alpha, Cut Weight | PictoJXL"
+description: "Convert PNG to JXL in the browser. Preserve transparency with Lossless, or trade for smaller delivery files. Private WebAssembly encoding on pictojxl.com."
+h1: "PNG to JPEG XL — Keep Alpha, Cut Weight"
+subheadline: "Move screenshots, icons, and UI kits into JPEG XL while transparency stays intact. Encoding never leaves this device."
+dropzoneLabel: "Drop PNG graphics to make JXL"
+acceptHint: "Static PNG with or without alpha"
 keywords:
   - png to jxl
-  - convert png to jpeg xl
-  - lossless png compressor
-  - png to jxl online
+  - png to jpeg xl converter
+  - compress png with transparency
+  - lossless png to jxl
 priority: 0.9
 defaultMode: single
 breadcrumbName: "PNG to JXL"
-comparisonTitle: "PNG vs JXL: compression efficiency"
+comparisonTitle: "PNG families versus JPEG XL"
 howToSteps:
-  - "Drop one or more static PNG files into the converter above."
-  - "Enable Lossless to preserve every pixel and alpha, or dial Quality for smaller delivery files."
-  - "Inspect the split preview, then download the .jxl output (or ZIP a batch)."
+  - "Add static PNG files to the PictoJXL workspace."
+  - "Enable Lossless for pixel-exact alpha, or lower Quality when delivery size wins."
+  - "Check edges in the split view, then save .jxl or ZIP the queue."
 comparisonRows:
   - format: PNG-24
-    strength: "Universal lossless + alpha"
-    jxlAdvantage: "Usually much smaller at equal fidelity"
+    strength: "Lossless + alpha everywhere"
+    jxlAdvantage: "Same fidelity in a denser bitstream"
   - format: PNG-8
-    strength: "Tiny palette graphics"
-    jxlAdvantage: "Better continuous-tone and high-res masters"
+    strength: "Tiny palette icons"
+    jxlAdvantage: "Better for photo-like or large canvases"
   - format: WebP lossless
-    strength: "Smaller than PNG often"
-    jxlAdvantage: "Stronger density + progressive decode options"
+    strength: "Often smaller than PNG"
+    jxlAdvantage: "Competitive density plus progressive options"
 faqs:
-  - question: "Does converting PNG to JXL keep transparency?"
-    answer: "Yes. JPEG XL supports alpha channels. Use Lossless when you need pixel-exact UI assets with transparency."
-  - question: "Is this a lossless PNG compressor?"
-    answer: "Yes. Turn on Lossless in the encode panel. Lossy Quality settings are also available when delivery size matters more than bit-exact pixels."
-  - question: "Can I convert animated PNGs?"
-    answer: "This tool focuses on static PNG frames. Animated PNG (APNG) sequences are not converted as animations in the current WebAssembly pipeline."
-  - question: "Are my PNG files uploaded?"
-    answer: "No. pictojxl.com converts PNG to JXL entirely in your browser with WebAssembly."
+  - question: "Will my PNG transparency survive in JXL?"
+    answer: "Yes. JPEG XL carries an alpha channel. Turn on Lossless when UI chrome must match the source pixel for pixel."
+  - question: "Is Lossless required?"
+    answer: "Only when you need bit-exact output. Lossy Quality settings can shrink marketing stills further after you eyeball the slider."
+  - question: "What about APNG animation?"
+    answer: "PictoJXL targets static PNG frames. Animated PNG sequences are not exported as animations in the current pipeline."
+  - question: "Where do my PNG bytes go?"
+    answer: "Nowhere off-device. pictojxl.com runs the encode inside your browser."
 ---
 
-Need **png to jxl online** for screenshots, UI kits, or logos with transparency? **pictojxl.com** converts PNG to JPEG XL (`.jxl`) in your browser with WebAssembly. Your design files stay on the device, so this path works as a private **lossless png compressor**.
+PNG still ships well for crisp UI, but PNG-24 screenshots bloat fast. **PictoJXL** gives you a private **png to jxl** path: drop a static PNG, pick Lossless or Quality, and pull a `.jxl` without uploading the artwork.
 
-## Why convert PNG images to JPEG XL?
+## Why designers move PNG masters into JXL
 
-PNG remains a safe default for alpha graphics. However, PNG-24 screenshots often grow heavy. JPEG XL packs sharp lines, text, and flat color into denser lossless (or near-lossless) payloads.
+Flat color, hairline rules, and text stay sharp under JPEG XL’s lossless and near-lossless modes. That makes the format a strong stand-in when a Figma export or capture needs to travel lighter through a design system or an offline kit.
 
-Because of that density, teams **convert png to jpeg xl** when they want smaller masters without giving up alpha. You still keep a format that suits progressive decode and modern color workflows.
+You keep alpha. You keep control of Effort. You decide after looking at the split preview—not after a blind cloud job finishes.
 
-## How to convert PNG to JXL and keep transparency
+## Convert a PNG without losing the matte
 
-1. Drop a static PNG into the studio above.
-2. Turn on Lossless when alpha and pixel-exact output matter.
-3. Raise Effort if you can wait a bit for denser compression.
-4. Check edges and text in the split inspector, then download `.jxl`.
+1. Drop one or more static PNGs above.
+2. Enable Lossless for icons, diagrams, and UI chrome.
+3. Raise Effort when you can spare a few seconds for denser output.
+4. Zoom the inspector if text or one-pixel borders look soft, then download.
 
-For folders of PNGs, switch to Queue mode or open the [Bulk JXL Converter](/bulk-jxl-converter). The queue can pause if your laptop runs hot.
+Folders of captures belong in Queue mode or on the [Bulk JXL Converter](/bulk-jxl-converter). Pause if the machine needs CPU for something else.
 
-## Sharp graphics and text edges
+## Edges, type, and diagrams
 
-Lossy web formats often smear fine text and one-pixel rules. In contrast, JXL’s lossless and visually lossless paths suit UI chrome, diagrams, and product mockups. Favorable cases can cut size by about **60%** versus naïve PNG delivery. Always verify on your own assets before you publish.
+Lossy photo codecs smear fine type. For chrome and documentation screenshots, start Lossless, then only dial Quality down if the slider still looks clean at 200–400% zoom. Many UI packs drop a large chunk of bytes versus raw PNG-24; measure on your set before you rewrite asset pipelines.
 
-## Related format tools
+## More tools in the studio
 
-Photos usually start as JPEG, so use [JPG to JXL](/jpg-to-jxl) when you need to shrink JPEG size. If assets already live as WebP, try [WebP to JXL](/webp-to-jxl). For AVIF inputs, open [AVIF to JXL](/avif-to-jxl). When you only need a decode check, use [JXL to JPG](/jxl-to-jpg). The homepage [JPEG XL converter](/) covers mixed drops in one studio.
+Camera JPEGs → [JPG to JXL](/jpg-to-jxl). Existing WebP → [WebP to JXL](/webp-to-jxl). AVIF libraries → [AVIF to JXL](/avif-to-jxl). Need a decode preview for someone without JXL support → [JXL to JPG](/jxl-to-jpg). Mixed drops → the [main PictoJXL studio](/).

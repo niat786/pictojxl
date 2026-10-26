@@ -1,65 +1,66 @@
 ---
-title: "Bulk JXL Image Converter – Batch Compress & Download ZIP"
-description: "Batch convert images to JXL in your browser. Free bulk jxl converter with auto queue, pause controls, and fast STORE-mode ZIP download."
-h1: "Bulk JXL Image Converter – Batch Compress & Download ZIP"
-subheadline: "Batch convert 100+ images to JPEG XL in your browser. Auto-start queue, pause anytime, then download a STORE-mode ZIP with no uploads."
-dropzoneLabel: "Drop a large batch of images"
-acceptHint: "Queue auto-starts — use Pause Queue / Run Queue, then Download All (.ZIP)"
+title: "Bulk JXL Converter — Queue, Pause, ZIP | PictoJXL"
+description: "Batch-convert pictures to JPEG XL in your browser. Auto queue, pause controls, OPFS-friendly outputs, and fast STORE-mode ZIP on pictojxl.com."
+h1: "Bulk JXL Converter — Queue, Pause, ZIP"
+subheadline: "Drop dozens or hundreds of still images, let the queue run locally, pause when you need CPU back, then download a STORE-mode ZIP—no cloud upload."
+dropzoneLabel: "Drop a large image batch"
+acceptHint: "Queue auto-starts — Pause / Run, then Download All (.ZIP)"
 keywords:
   - bulk jxl converter
-  - batch convert images to jxl
-  - mass jxl compressor zip
+  - batch convert to jxl
+  - jxl zip download
+  - mass image to jxl
 priority: 0.9
 defaultMode: auto-queue
 breadcrumbName: "Bulk JXL Converter"
-comparisonTitle: "Bulk conversion options compared"
+comparisonTitle: "Bulk paths compared"
 howToSteps:
-  - "Drop dozens or 100+ PNG, JPG, or WebP files into the bulk studio."
-  - "The queue starts automatically; press Pause Queue if you need to free CPU or RAM."
-  - "When finished, click Download All (.ZIP) for a STORE-mode archive."
+  - "Drop a large set of PNG, JPG, WebP, or AVIF files into this bulk studio."
+  - "Let the queue auto-start; pause if you need to free CPU or RAM."
+  - "When the batch finishes, click Download All (.ZIP) for a STORE-mode archive."
 comparisonRows:
-  - format: Cloud batch tools
-    strength: "Offload CPU to a server"
-    jxlAdvantage: "No uploads, no remote quotas, private"
-  - format: CLI scripts
-    strength: "Fully scriptable"
-    jxlAdvantage: "Zero install—runs in the browser"
-  - format: Single-file web tools
-    strength: "Simple one-off UX"
-    jxlAdvantage: "True multi-file queue + ZIP export"
+  - format: Cloud batch sites
+    strength: "Offload CPU remotely"
+    jxlAdvantage: "No uploads, no remote quotas, files stay private"
+  - format: Local CLI scripts
+    strength: "Fully automatable"
+    jxlAdvantage: "No install—opens in any modern browser"
+  - format: One-file web tools
+    strength: "Simple single encode"
+    jxlAdvantage: "Real multi-file queue plus ZIP export"
 faqs:
-  - question: "Can I upload multi-gigabyte folders?"
-    answer: "Browser RAM is the real limit. Extremely large batches can freeze or crash a tab. The studio warns when a batch looks risky and can pause if memory errors occur. Convert in smaller chunks when needed."
-  - question: "Will bulk conversion freeze my tab?"
-    answer: "Encoding runs in Web Workers so the UI stays usable. Use Pause Queue if fans spin up or other apps need CPU."
-  - question: "Why is the ZIP download so fast?"
-    answer: "We pack with zero-compression STORE mode (level 0). JXL payloads are already compressed, so DEFLATE re-zipping wastes time for almost no size gain."
-  - question: "What is OPFS used for?"
-    answer: "The Origin Private File System can hold converted buffers on disk so long queues do not keep every ArrayBuffer in RAM at once."
+  - question: "Can I throw multi-gigabyte folders at one tab?"
+    answer: "Browser memory sets the ceiling. Huge batches can stall or crash a tab. PictoJXL warns when a drop looks risky and can pause on memory errors—split giant libraries when needed."
+  - question: "Will the page lock up while encoding?"
+    answer: "Work runs in Web Workers so the UI stays interactive. Use Pause Queue if fans spin up or other apps need the CPU."
+  - question: "Why does the ZIP finish so quickly?"
+    answer: "We pack with STORE mode (level 0). JXL payloads are already compressed, so DEFLATE would waste time for almost no gain."
+  - question: "What does OPFS do here?"
+    answer: "The Origin Private File System can hold converted buffers on disk so long queues do not keep every ArrayBuffer in RAM."
 ---
 
-This **bulk jxl converter** is for power users who need to **batch convert images to jxl** and download a ZIP without shipping folders to the cloud. **pictojxl.com** encodes PNG, JPG, WebP, and AVIF locally with WebAssembly. Concurrent workers process the queue while you keep ownership of every byte.
+This page is for people who need a **bulk jxl converter** that can **batch convert to jxl** without shipping a folder to the cloud. PictoJXL encodes PNG, JPG, WebP, and AVIF locally, runs a capped worker pool, and lets you pull a ZIP when the queue settles.
 
-## How to batch convert 100+ images in your browser
+## Running 100+ files in a browser tab
 
-Cloud “mass compress” sites often throttle queues and store temporary copies. Here, nothing uploads to pictojxl.com. Drop 100+ images, watch status cards on mobile or the table on desktop, and pause when you need CPU back.
+Cloud “mass compress” products often throttle jobs and park temporary copies. Here, nothing uploads to pictojxl.com. Drop a large set, watch status on mobile cards or the desktop table, and pause whenever the laptop needs air.
 
-Be realistic about hardware. A laptop with limited RAM will struggle with thousands of huge PNGs in one tab. Start with a representative batch, heed memory warnings, and split multi-gigabyte libraries into chunks.
+Be honest about hardware. Limited RAM plus thousands of huge PNGs in one tab will struggle. Start with a sample batch, respect memory warnings, and chunk multi-gigabyte libraries.
 
-## Zero memory bloat with OPFS
+## Keeping RAM under control
 
-Long queues can exhaust browser memory if every output stays as a live buffer. The studio can flush converted `.jxl` data to the Origin Private File System (OPFS). Workers finish, release RAM, and you still get per-file download or a final ZIP. A capped worker pool keeps bulk jobs more stable than naïve in-memory demos.
+If every output stays as a live buffer, long queues exhaust memory. The studio can flush `.jxl` data to OPFS so workers finish, release RAM, and you still download per file or as one archive. That pattern stays steadier than demos that hold everything in memory.
 
-## Step-by-step bulk conversion
+## Bulk recipe
 
-1. Open this page (Queue mode is the default).
+1. Land on this page (Queue mode is already selected).
 2. Drag a folder or multi-select 50–200+ still images.
-3. Let the queue auto-start, then use Pause Queue or Run Queue as needed.
-4. Inspect any item if you want a Squoosh-style preview.
-5. Click Download All (.ZIP) for a **mass jxl compressor zip** packed in STORE mode.
+3. Let the queue auto-start; use Pause Queue / Run Queue as needed.
+4. Open any row in the inspector if you want a closer look.
+5. Click Download All (.ZIP) for a **jxl zip download** packed in STORE mode.
 
-STORE mode skips DEFLATE because JXL bytes are already compressed. As a result, the archive finishes quickly without shrinking the payloads twice.
+STORE skips DEFLATE because the payloads are already dense. The archive finishes fast without compressing twice.
 
-## Single-format guides and decode QA
+## Tune first, scale second
 
-Tune one file first on [PNG to JXL](/png-to-jxl), [JPG to JXL](/jpg-to-jxl), [WebP to JXL](/webp-to-jxl), or [AVIF to JXL](/avif-to-jxl). After a bulk run, use [JXL to JPG](/jxl-to-jpg) for stakeholder previews when a viewer cannot open `.jxl`. For a mixed single-file workflow, return to the main [JPEG XL converter](/).
+Dial settings on [PNG to JXL](/png-to-jxl), [JPG to JXL](/jpg-to-jxl), [WebP to JXL](/webp-to-jxl), or [AVIF to JXL](/avif-to-jxl). After a bulk run, [JXL to JPG](/jxl-to-jpg) helps when a viewer cannot open `.jxl`. Single mixed drops → [PictoJXL home](/).

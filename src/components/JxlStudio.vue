@@ -17,11 +17,11 @@ const props = withDefaults(
     defaultMode?: StudioMode;
   }>(),
   {
-    headline: 'Free Online JPEG XL (JXL) Converter & Compression Studio',
+    headline: 'PictoJXL — Private JPEG XL Converter in Your Browser',
     subheadline:
-      'Convert PNG, JPG, and WebP to next-gen JPEG XL instantly. 100% free, private, and powered by WebAssembly—no uploads required.',
-    dropzoneLabel: 'Drop images here or click to browse',
-    acceptHint: 'PNG, JPG, WebP, AVIF, JXL — single or 200+ files',
+      'Drop pictures into the studio, tune Quality and Effort, then download .jxl files without sending anything to a server.',
+    dropzoneLabel: 'Drop pictures here or browse your device',
+    acceptHint: 'PNG · JPG · WebP · AVIF — one image or a whole folder',
     defaultMode: 'single',
   },
 );
@@ -85,16 +85,16 @@ async function loadSample() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     const grad = ctx.createLinearGradient(0, 0, 640, 400);
-    grad.addColorStop(0, '#34d399');
-    grad.addColorStop(0.5, '#6366f1');
+    grad.addColorStop(0, '#7dd3fc');
+    grad.addColorStop(0.45, '#38bdf8');
     grad.addColorStop(1, '#0f172a');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 640, 400);
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
     ctx.font = 'bold 42px ui-sans-serif, system-ui, -apple-system, sans-serif';
     ctx.fillText('PictoJXL', 48, 200);
     ctx.font = '20px ui-sans-serif, system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
     ctx.fillText('Sample · pictojxl.com', 48, 240);
 
     const blob = await new Promise<Blob | null>((resolve) =>
@@ -110,12 +110,15 @@ async function loadSample() {
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+  <section class="mx-auto max-w-7xl px-4 py-6 lg:px-6">
     <div class="mb-6 max-w-3xl">
-      <h1 class="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-[2.5rem] sm:leading-tight">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-sky-700">
+        On-device JPEG XL studio
+      </p>
+      <h1 class="text-3xl font-semibold tracking-tight text-slate-950 sm:text-[2.55rem] sm:leading-tight">
         {{ headline }}
       </h1>
-      <p class="mt-3 text-lg leading-relaxed text-zinc-300">
+      <p class="mt-3 text-lg leading-relaxed text-slate-700">
         {{ subheadline }}
       </p>
     </div>
@@ -125,30 +128,30 @@ async function loadSample() {
       class="mb-4 flex flex-wrap items-center justify-between gap-3"
     >
       <div
-        class="inline-flex rounded-xl border border-white/10 bg-zinc-700/70 p-1 text-base"
+        class="inline-flex rounded-full border border-slate-200 bg-white p-1 text-sm shadow-sm"
         role="tablist"
         aria-label="Studio mode"
       >
         <button
           type="button"
-          class="rounded-lg px-3.5 py-2 transition"
-          :class="mode === 'single' ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-300 hover:text-zinc-100'"
+          class="rounded-full px-4 py-2 transition"
+          :class="mode === 'single' ? 'bg-sky-600 text-white shadow-sm' : 'font-medium text-slate-800 hover:bg-slate-50'"
           @click="setUiMode('single')"
         >
           Single
         </button>
         <button
           type="button"
-          class="rounded-lg px-3.5 py-2 transition"
-          :class="mode === 'step-by-step' ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-300 hover:text-zinc-100'"
+          class="rounded-full px-4 py-2 transition"
+          :class="mode === 'step-by-step' ? 'bg-sky-600 text-white shadow-sm' : 'font-medium text-slate-800 hover:bg-slate-50'"
           @click="setUiMode('step-by-step')"
         >
           Step-by-Step
         </button>
         <button
           type="button"
-          class="rounded-lg px-3.5 py-2 transition"
-          :class="mode === 'auto-queue' ? 'bg-zinc-100 text-zinc-950' : 'text-zinc-300 hover:text-zinc-100'"
+          class="rounded-full px-4 py-2 transition"
+          :class="mode === 'auto-queue' ? 'bg-sky-600 text-white shadow-sm' : 'font-medium text-slate-800 hover:bg-slate-50'"
           @click="setUiMode('auto-queue')"
         >
           Queue
@@ -157,14 +160,14 @@ async function loadSample() {
       <div class="flex gap-2">
         <button
           type="button"
-          class="rounded-lg border border-white/10 px-3.5 py-2 text-base text-zinc-200 hover:border-white/20"
+          class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
           @click="fileInput?.click()"
         >
           Add files
         </button>
         <button
           type="button"
-          class="rounded-lg border border-white/10 px-3.5 py-2 text-base text-zinc-400 hover:border-red-500/30 hover:text-red-300"
+          class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm hover:border-red-300 hover:text-red-700"
           @click="store.clearAll()"
         >
           Clear
@@ -172,61 +175,60 @@ async function loadSample() {
       </div>
     </div>
 
-    <p v-if="lastError" class="mb-3 text-base text-red-300">{{ lastError }}</p>
+    <p v-if="lastError" class="mb-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-base text-red-700">
+      {{ lastError }}
+    </p>
 
-    <!-- Always-on workspace: main canvas + encode controls -->
     <div
-      class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]"
+      class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px]"
       @dragenter.prevent="dragging = true"
       @dragover.prevent="dragging = true"
       @dragleave.prevent="dragging = false"
       @drop="onDrop"
     >
-      <div class="glass relative min-h-[420px] overflow-hidden rounded-2xl p-4">
-        <!-- Empty dropzone -->
+      <div
+        class="card relative min-h-[440px] overflow-hidden rounded-sm p-4 sm:p-5"
+        :class="dragging ? 'ring-2 ring-sky-400/60' : ''"
+      >
         <div
           v-if="!hasFiles"
-          class="relative flex h-full min-h-[388px] flex-col items-center justify-center"
+          class="relative flex h-full min-h-[400px] flex-col items-center justify-center"
         >
           <button
             type="button"
-            class="flex w-full flex-1 flex-col items-center justify-center gap-4 px-6 py-12 text-center transition"
-            :class="dragging ? 'bg-emerald-500/10' : ''"
+            class="flex w-full flex-1 flex-col items-center justify-center gap-4 rounded-sm border-2 border-dashed border-sky-600/50 bg-gradient-to-b from-sky-100 to-white px-6 py-12 text-center transition"
             @click="fileInput?.click()"
           >
             <div
-              class="flex h-16 w-16 items-center justify-center rounded-2xl border border-dashed border-emerald-400/40 bg-emerald-500/10 text-emerald-300"
+              class="flex h-16 w-16 items-center justify-center rounded-full bg-sky-600 text-white shadow-lg shadow-sky-600/30"
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M12 16V4m0 0l-4 4m4-4l4 4M4 16.5V18a2 2 0 002 2h12a2 2 0 002-2v-1.5"
                   stroke="currentColor"
-                  stroke-width="1.6"
+                  stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
               </svg>
             </div>
             <div>
-              <div class="text-xl font-medium text-zinc-100">{{ dropzoneLabel }}</div>
-              <div class="mt-2 text-base text-zinc-400">{{ acceptHint }}</div>
+              <div class="text-xl font-bold text-slate-950">{{ dropzoneLabel }}</div>
+              <div class="mt-2 text-base font-medium text-slate-700">{{ acceptHint }}</div>
             </div>
-            <span
-              class="rounded-xl bg-emerald-500 px-6 py-3 text-base font-semibold text-zinc-950"
-            >
+            <span class="rounded-full bg-slate-950 px-6 py-3 text-base font-semibold text-white">
               Choose images
             </span>
           </button>
           <button
             type="button"
-            class="mb-2 rounded-xl border border-white/10 bg-zinc-700/90 px-6 py-3 text-base text-zinc-200 hover:border-white/20 hover:text-white"
+            class="mt-3 rounded-full border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
             @click="loadSample"
           >
             Try sample image
           </button>
         </div>
 
-        <!-- Active workspace -->
         <template v-else>
           <QueueManager v-if="showQueue" />
           <SplitComparisonCanvas
@@ -236,7 +238,7 @@ async function loadSample() {
           />
           <div
             v-if="!showQueue && !showInspector && isBusy"
-            class="mt-4 text-center text-base text-zinc-300"
+            class="mt-4 text-center text-base text-slate-500"
           >
             Encoding with WebAssembly…
           </div>

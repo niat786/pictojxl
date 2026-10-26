@@ -4,7 +4,7 @@ Domain: pictojxl.com | Brand: PictoJXL
 
 ## 1. Tech Stack & Architecture
 - **Framework:** Astro 5+ (Static Site Generation for 100/100 Lighthouse SEO) with **Vue 3 (Composition API, `<script setup lang="ts">`)** interactive Islands (`client:load`).
-- **Styling:** Tailwind CSS (Sleek, macOS-inspired dark mode aesthetic: `bg-zinc-950`, glassmorphic panels `bg-zinc-900/70 backdrop-blur-md`, subtle `border-white/10`, high-contrast typography, vibrant emerald/indigo accents).
+- **Styling:** Tailwind CSS (Sleek, macOS-inspired dark mode aesthetic: `bg-zinc-950`, glassmorphic panels `bg-zinc-900/70 backdrop-blur-md`, subtle `border-white/10`, high-contrast typography, vibrant sky/indigo accents).
 - **State & Queue Engine:** Pinia (or Vue reactive store) + `p-queue` for strict concurrency control.
 - **Worker RPC:** `comlink` + Web Workers (`type: 'module'`).
 - **Codec Engine:** `@jsquash/jxl` (encode & decode), `@jsquash/webp`, `@jsquash/avif` (for decoding modern inputs).

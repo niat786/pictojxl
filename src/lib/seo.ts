@@ -28,11 +28,11 @@ export function buildWebApplicationLd(opts: {
     },
     description: opts.description,
     featureList: opts.featureList ?? [
-      'Client-side JPEG XL encoding',
-      'PNG JPG WebP AVIF to JXL conversion',
-      'Split comparison inspector',
-      'Bulk queue and ZIP export',
-      'Private — no file uploads',
+      'On-device JPEG XL encode and decode',
+      'PNG, JPG, WebP, and AVIF inputs',
+      'Side-by-side quality inspector',
+      'Queue mode with ZIP download',
+      'No image uploads to the server',
     ],
   };
 }

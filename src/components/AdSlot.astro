@@ -21,7 +21,7 @@ const minHeight = height >= 250 ? 'min-h-[250px]' : 'min-h-[90px]';
 <aside
   id={id}
   class:list={[
-    'ad-slot relative w-full overflow-hidden rounded-xl border border-white/5 bg-zinc-900/40',
+    'ad-slot relative w-full overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/70',
     minHeight,
     className,
   ]}
@@ -33,7 +33,7 @@ const minHeight = height >= 250 ? 'min-h-[250px]' : 'min-h-[90px]';
 >
   <div class="pointer-events-none absolute left-3 top-2 ad-label">{label}</div>
   <div
-    class="flex h-full w-full items-center justify-center px-4 py-6 text-center text-xs text-zinc-600"
+    class="flex h-full w-full items-center justify-center px-4 py-6 text-center text-xs text-slate-400"
     style={`min-height: ${height}px;`}
   >
     <!-- Replace with AdSense <ins> when publisher ID is ready -->

@@ -3,9 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import LegalPage from '../components/LegalPage.astro';
 import { absoluteUrl, buildBreadcrumbLd } from '../lib/seo';
 
-const title = 'Privacy Policy | pictojxl.com';
+const title = 'Privacy Policy | PictoJXL';
 const description =
-  'Privacy Policy for pictojxl.com — client-side JPEG XL conversion. Images never leave your device. Learn how cookies, ads, and analytics are handled.';
+  'PictoJXL privacy policy: image conversion stays in your browser. Details on contact email, ads, analytics, cookies, and retention for pictojxl.com.';
 
 const jsonLd = [
   buildBreadcrumbLd([
@@ -18,59 +18,49 @@ const jsonLd = [
 <Layout title={title} description={description} canonicalPath="/privacy-policy" jsonLd={jsonLd}>
   <LegalPage
     title="Privacy Policy"
-    description="How pictojxl.com handles privacy, cookies, advertising, and analytics."
+    description="What PictoJXL does—and does not—collect while you convert images on pictojxl.com."
+    updated="October 27, 2026"
   >
     <p>
-      This Privacy Policy describes how <strong>Webwise Private Company Ltd</strong> (“Webwise,”
-      “we,” “us,” or “our”), a company based in the United States, operates the website
-      <a href={absoluteUrl('/')}>pictojxl.com</a> (the “Service”). By using the Service, you agree
-      to this Policy.
+      <strong>Webwise Private Company Ltd</strong> (“Webwise,” “we,” “us”) operates
+      <a href={absoluteUrl('/')}>pictojxl.com</a>, the PictoJXL browser studio (the “Service”). This
+      policy explains our privacy practices. Using the Service means you accept these terms.
     </p>
 
-    <h2>1. The Client-Side Privacy Guarantee</h2>
+    <h2>A. Local conversion promise</h2>
     <p>
-      All image conversions and processing take place locally on your device using WebAssembly
-      technology. Your files, photos, and converted images are <strong>never</strong> uploaded to,
-      stored on, or transmitted to our servers.
+      PictoJXL is built so encode and decode happen on your device. WebAssembly (and Web Workers when
+      available) process your pictures inside the browser. We do not run a server-side conversion API
+      that receives your image files, and we do not store converted outputs on our infrastructure.
     </p>
     <p>
-      Encoding and decoding run in your browser (including Web Workers where available). We do not
-      operate a cloud conversion pipeline for your images, and we do not claim ownership of any
-      content you process with the tool.
-    </p>
-
-    <h2>2. Information We Collect</h2>
-    <h3>2.1 Information you provide</h3>
-    <p>
-      If you contact us by email (for example at
-      <a href="mailto:support@pictojxl.com">support@pictojxl.com</a>), we receive the information
-      you include in that message (such as your email address and message content) so we can
-      respond.
-    </p>
-    <h3>2.2 Technical and usage data</h3>
-    <p>
-      Like most websites, our hosting and security layers may process standard technical data such
-      as IP address, browser type, device type, operating system, referring URLs, and approximate
-      timestamps. This data is used to operate, secure, and improve the Service—not to reconstruct
-      your images.
+      Your photos and graphics remain yours. Processing them with the tool does not transfer ownership
+      to Webwise.
     </p>
 
-    <h2>3. Google AdSense &amp; Advertising Cookies</h2>
+    <h2>B. Data we may receive</h2>
+    <h3>Messages you send</h3>
     <p>
-      We may use Google AdSense and related Google advertising services to display ads on the
-      Service. Third-party vendors, including Google, use cookies to serve ads based on a user’s
-      prior visits to your website or other websites.
+      If you email <a href="mailto:support@pictojxl.com">support@pictojxl.com</a>, we receive whatever
+      you put in that message—typically your address, name if provided, and the body—so we can reply.
+    </p>
+    <h3>Operational telemetry from hosting</h3>
+    <p>
+      Hosting, CDN, and security providers commonly see connection metadata: IP address, user agent,
+      device class, OS hints, referrer, and timing. We use that to keep the site up, safe, and
+      performant. It is not used to rebuild or inspect the contents of images you convert locally.
+    </p>
+
+    <h2>C. Advertising partners</h2>
+    <p>
+      The Service may show ads through Google AdSense or similar networks. Those partners can set
+      cookies and use prior browsing activity (on this site or others) to decide which ads to show.
     </p>
     <p>
-      Google’s use of advertising cookies enables it and its partners to serve ads based on visits
-      to this site and/or other sites on the Internet. Users may opt out of personalized
-      advertising by visiting
+      You can adjust personalized advertising in
       <a href="https://adssettings.google.com" rel="noopener noreferrer" target="_blank"
         >Google Ads Settings</a
-      >.
-    </p>
-    <p>
-      For more information about how Google uses data when you use our sites or apps, see
+      >. Google also documents partner data use at
       <a
         href="https://policies.google.com/technologies/partner-sites"
         rel="noopener noreferrer"
@@ -78,65 +68,60 @@ const jsonLd = [
       >.
     </p>
 
-    <h2>4. Analytics and Log Data</h2>
+    <h2>D. Analytics</h2>
     <p>
-      We may use analytics tools (such as Google Analytics or privacy-focused alternatives) to
-      understand aggregate traffic and performance. These tools may collect non-personally
-      identifying technical information such as browser type, operating system, general geographic
-      region, and anonymized or aggregated usage metrics. Where available, IP anonymization features
-      may be enabled. Analytics data is used to maintain site reliability and improve user
-      experience—not to identify the contents of your image files.
+      We may enable analytics (Google Analytics or a privacy-minded alternative) to understand
+      aggregate traffic and reliability. Typical signals include browser family, OS, coarse geography,
+      and anonymized or aggregated usage. Where the product allows, IP anonymization may be turned on.
+      Analytics is for operating and improving PictoJXL—not for reading your image pixels.
     </p>
 
-    <h2>5. Cookies and Similar Technologies</h2>
+    <h2>E. Cookies</h2>
     <p>
-      We and our partners may use cookies and similar technologies for essential site functions and
-      advertising. See our <a href="/cookie-policy">Cookie Policy</a> for details on categories of
-      cookies and how to manage them.
+      Cookies and similar storage may support core site behavior and advertising. Categories and
+      controls are described in the <a href="/cookie-policy">Cookie Policy</a>.
     </p>
 
-    <h2>6. Children’s Privacy</h2>
+    <h2>F. Children</h2>
     <p>
-      The Service does not knowingly collect any personal information from children under the age of
-      13. If you believe a child has provided us personal information through a contact channel,
-      please email <a href="mailto:support@pictojxl.com">support@pictojxl.com</a> and we will take
-      appropriate steps to delete it.
+      The Service is not directed at children under 13, and we do not knowingly collect their personal
+      information. If you think a child contacted us with personal data, write to
+      <a href="mailto:support@pictojxl.com">support@pictojxl.com</a> and we will delete it where
+      appropriate.
     </p>
 
-    <h2>7. Data Retention</h2>
+    <h2>G. How long we keep things</h2>
     <p>
-      Because image conversion is performed on your device, we do not retain your image files on our
-      servers. Contact emails and standard server/security logs are retained only as long as needed
-      for support, security, legal compliance, and legitimate business operations.
+      Image files from conversion are not retained on our servers because they are not uploaded for
+      conversion. Support email and routine server or security logs are kept only as long as needed for
+      support, security, legal duties, and ordinary business operations.
     </p>
 
-    <h2>8. Third-Party Links</h2>
+    <h2>H. Links away from PictoJXL</h2>
     <p>
-      The Service may link to third-party sites (for example Google policies or ads settings). We
-      are not responsible for the privacy practices of those sites.
+      Pages may link to third-party destinations (policy docs, ads settings, and similar). Their
+      privacy practices are their own.
     </p>
 
-    <h2>9. International Users</h2>
+    <h2>I. Visitors outside the United States</h2>
     <p>
-      The Service is operated by Webwise Private Company Ltd in the United States. If you access
-      the Service from other regions, you understand that technical processing related to site
-      delivery may occur in the U.S. or other locations where our providers operate. Your image
-      conversion itself remains local to your browser.
+      Webwise is a United States company. Site delivery and security processing may occur in the U.S.
+      or in regions where our providers operate. Image conversion itself still runs in your browser,
+      wherever you are.
     </p>
 
-    <h2>10. Changes to This Policy</h2>
+    <h2>J. Policy updates</h2>
     <p>
-      We may update this Privacy Policy from time to time. The “Last updated” date at the top of
-      this page will change when we do. Continued use of the Service after updates constitutes
-      acceptance of the revised Policy.
+      We may revise this policy. The “Last updated” line on this page will change when we publish a
+      revision. Continued use after an update means you accept the new version.
     </p>
 
-    <h2>11. Contact Us</h2>
+    <h2>K. Reach us</h2>
     <p>
-      Questions about this Privacy Policy?<br />
-      Webwise Private Company Ltd (USA)<br />
-      Email: <a href="mailto:support@pictojxl.com">support@pictojxl.com</a><br />
-      Website: <a href={absoluteUrl('/')}>https://pictojxl.com</a>
+      Privacy questions about PictoJXL:<br />
+      Webwise Private Company Ltd<br />
+      <a href="mailto:support@pictojxl.com">support@pictojxl.com</a><br />
+      <a href={absoluteUrl('/')}>https://pictojxl.com</a>
     </p>
   </LegalPage>
 </Layout>

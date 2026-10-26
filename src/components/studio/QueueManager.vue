@@ -21,15 +21,15 @@ const hasWork = computed(
 function statusClass(status: JobStatus): string {
   switch (status) {
     case 'queued':
-      return 'bg-zinc-700 text-zinc-300';
+      return 'bg-slate-100 text-slate-600';
     case 'processing':
-      return 'bg-indigo-500/15 text-indigo-300';
+      return 'bg-sky-100 text-sky-700';
     case 'done':
-      return 'bg-emerald-500/15 text-emerald-300';
+      return 'bg-emerald-100 text-emerald-700';
     case 'error':
-      return 'bg-red-500/15 text-red-300';
+      return 'bg-red-100 text-red-700';
     default:
-      return 'bg-zinc-700 text-zinc-300';
+      return 'bg-slate-100 text-slate-600';
   }
 }
 
@@ -44,24 +44,24 @@ function sizeLabel(item: (typeof items.value)[number]): string {
 <template>
   <div class="flex h-full min-h-[360px] flex-col gap-3">
     <div class="flex flex-wrap items-center justify-between gap-3">
-      <div class="text-base text-zinc-300">
-        <span class="text-zinc-50">{{ doneCount }}</span>
+      <div class="text-base font-medium text-slate-800">
+        <span class="font-bold text-slate-950">{{ doneCount }}</span>
         /
         {{ items.length }} converted
-        <span v-if="totalSavings" class="ml-2 text-emerald-400">
+        <span v-if="totalSavings" class="ml-2 font-semibold text-sky-700">
           saved {{ totalSavings.pct }}%
         </span>
-        <span v-if="isPaused" class="ml-2 text-amber-300">Paused</span>
+        <span v-if="isPaused" class="ml-2 font-semibold text-amber-700">Paused</span>
       </div>
       <div class="flex flex-wrap gap-2">
         <button
           v-if="hasWork"
           type="button"
-          class="cursor-pointer rounded-lg border px-3.5 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-40"
+          class="cursor-pointer rounded-full border px-3.5 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-40"
           :class="
             isBusy && !isPaused
-              ? 'border-amber-500/40 bg-amber-500/10 text-amber-200 hover:border-amber-400/60'
-              : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-emerald-400/50'
+              ? 'border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100'
+              : 'border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100'
           "
           @click="store.toggleQueue()"
         >
@@ -69,7 +69,7 @@ function sizeLabel(item: (typeof items.value)[number]): string {
         </button>
         <button
           type="button"
-          class="cursor-pointer rounded-lg bg-emerald-500 px-3.5 py-2 text-sm font-semibold text-zinc-950 hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-40"
+          class="cursor-pointer rounded-full bg-sky-500 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
           :disabled="doneCount === 0"
           @click="store.downloadAllZip()"
         >
@@ -78,12 +78,11 @@ function sizeLabel(item: (typeof items.value)[number]): string {
       </div>
     </div>
 
-    <!-- Mobile / small screens: stacked cards (no horizontal scroll) -->
     <div class="max-h-[480px] space-y-3 overflow-y-auto md:hidden">
       <article
         v-for="item in items"
         :key="item.id"
-        class="rounded-xl border border-white/10 bg-zinc-800/50 p-3"
+        class="rounded-sm border border-slate-200 bg-slate-50/80 p-3"
       >
         <button
           type="button"
@@ -94,12 +93,12 @@ function sizeLabel(item: (typeof items.value)[number]): string {
             v-if="item.thumbnailUrl"
             :src="item.thumbnailUrl"
             alt=""
-            class="h-14 w-14 shrink-0 rounded-lg object-cover"
+            class="h-14 w-14 shrink-0 rounded-2xl object-cover"
           />
           <div class="min-w-0 flex-1">
-            <p class="truncate text-base font-medium text-zinc-50">{{ item.name }}</p>
+            <p class="truncate text-base font-medium text-slate-900">{{ item.name }}</p>
             <span
-              class="mt-1 inline-block rounded-md px-2 py-0.5 text-sm capitalize"
+              class="mt-1 inline-block rounded-full px-2.5 py-0.5 text-sm capitalize"
               :class="statusClass(item.status)"
             >
               {{ item.status }}
@@ -107,14 +106,14 @@ function sizeLabel(item: (typeof items.value)[number]): string {
           </div>
         </button>
 
-        <div class="mt-3 space-y-1 border-t border-white/5 pt-3 text-sm">
+        <div class="mt-3 space-y-1 border-t border-slate-200 pt-3 text-sm">
           <div class="flex justify-between gap-3">
-            <span class="text-zinc-400">Size</span>
-            <span class="font-mono text-zinc-200">{{ sizeLabel(item) }}</span>
+            <span class="text-slate-500">Size</span>
+            <span class="font-mono text-slate-800">{{ sizeLabel(item) }}</span>
           </div>
           <div class="flex justify-between gap-3">
-            <span class="text-zinc-400">Saved</span>
-            <span class="font-mono text-emerald-400">
+            <span class="text-slate-500">Saved</span>
+            <span class="font-mono text-sky-600">
               <template v-if="item.savingsPct != null">-{{ item.savingsPct }}%</template>
               <template v-else>—</template>
             </span>
@@ -124,14 +123,14 @@ function sizeLabel(item: (typeof items.value)[number]): string {
         <div class="mt-3 flex flex-wrap gap-2">
           <button
             type="button"
-            class="cursor-pointer rounded-lg border border-white/10 bg-zinc-700/80 px-3 py-2 text-sm text-zinc-100"
+            class="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
             @click="store.inspectItem(item.id)"
           >
             Inspect
           </button>
           <button
             type="button"
-            class="cursor-pointer rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300 disabled:cursor-not-allowed disabled:opacity-40"
+            class="cursor-pointer rounded-full border border-sky-200 bg-sky-50 px-3 py-2 text-sm text-sky-700 disabled:cursor-not-allowed disabled:opacity-40"
             :disabled="item.status !== 'done'"
             @click="store.downloadItem(item.id)"
           >
@@ -139,7 +138,7 @@ function sizeLabel(item: (typeof items.value)[number]): string {
           </button>
           <button
             type="button"
-            class="cursor-pointer rounded-lg border border-white/10 px-3 py-2 text-sm text-zinc-400 hover:text-red-300"
+            class="cursor-pointer rounded-full border border-slate-200 px-3 py-2 text-sm text-slate-500 hover:text-red-600"
             @click="store.removeItem(item.id)"
           >
             Remove
@@ -148,11 +147,10 @@ function sizeLabel(item: (typeof items.value)[number]): string {
       </article>
     </div>
 
-    <!-- Desktop: table rows -->
-    <div class="hidden overflow-hidden rounded-xl border border-white/10 bg-zinc-800/40 md:block">
+    <div class="hidden overflow-hidden rounded-sm border border-slate-200 bg-white md:block">
       <div class="max-h-[420px] overflow-auto">
         <table class="w-full text-left text-base">
-          <thead class="sticky top-0 bg-zinc-800/95 text-sm uppercase tracking-wide text-zinc-400">
+          <thead class="sticky top-0 bg-slate-50 text-sm uppercase tracking-wide text-slate-500">
             <tr>
               <th class="px-3 py-2.5 font-medium">File</th>
               <th class="px-3 py-2.5 font-medium">Status</th>
@@ -165,7 +163,7 @@ function sizeLabel(item: (typeof items.value)[number]): string {
             <tr
               v-for="item in items"
               :key="item.id"
-              class="border-t border-white/5 hover:bg-white/[0.04]"
+              class="border-t border-slate-100 hover:bg-sky-50/40"
             >
               <td class="px-3 py-2.5">
                 <button
@@ -177,23 +175,23 @@ function sizeLabel(item: (typeof items.value)[number]): string {
                     v-if="item.thumbnailUrl"
                     :src="item.thumbnailUrl"
                     alt=""
-                    class="h-9 w-9 rounded object-cover"
+                    class="h-9 w-9 rounded-xl object-cover"
                   />
-                  <span class="truncate text-zinc-100">{{ item.name }}</span>
+                  <span class="truncate text-slate-800">{{ item.name }}</span>
                 </button>
               </td>
               <td class="px-3 py-2.5">
                 <span
-                  class="rounded-md px-2 py-0.5 text-sm capitalize"
+                  class="rounded-full px-2.5 py-0.5 text-sm capitalize"
                   :class="statusClass(item.status)"
                 >
                   {{ item.status }}
                 </span>
               </td>
-              <td class="px-3 py-2.5 font-mono text-sm text-zinc-300">
+              <td class="px-3 py-2.5 font-mono text-sm text-slate-600">
                 {{ sizeLabel(item) }}
               </td>
-              <td class="px-3 py-2.5 font-mono text-sm text-emerald-400">
+              <td class="px-3 py-2.5 font-mono text-sm text-sky-600">
                 <template v-if="item.savingsPct != null">-{{ item.savingsPct }}%</template>
                 <template v-else>—</template>
               </td>
@@ -201,14 +199,14 @@ function sizeLabel(item: (typeof items.value)[number]): string {
                 <div class="flex justify-end gap-3">
                   <button
                     type="button"
-                    class="cursor-pointer text-sm text-zinc-300 hover:text-zinc-50"
+                    class="cursor-pointer text-sm text-slate-600 hover:text-slate-900"
                     @click="store.inspectItem(item.id)"
                   >
                     Inspect
                   </button>
                   <button
                     type="button"
-                    class="cursor-pointer text-sm text-emerald-400 hover:text-emerald-300 disabled:cursor-not-allowed disabled:opacity-40"
+                    class="cursor-pointer text-sm text-sky-600 hover:text-sky-700 disabled:cursor-not-allowed disabled:opacity-40"
                     :disabled="item.status !== 'done'"
                     @click="store.downloadItem(item.id)"
                   >
@@ -216,7 +214,7 @@ function sizeLabel(item: (typeof items.value)[number]): string {
                   </button>
                   <button
                     type="button"
-                    class="cursor-pointer text-sm text-zinc-400 hover:text-red-300"
+                    class="cursor-pointer text-sm text-slate-400 hover:text-red-600"
                     @click="store.removeItem(item.id)"
                   >
                     Remove

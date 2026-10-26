@@ -41,7 +41,7 @@ function draw() {
   for (let y = 0; y < h; y += size) {
     for (let x = 0; x < w; x += size) {
       const odd = ((x / size) + (y / size)) % 2 === 0;
-      ctx.fillStyle = odd ? '#27272a' : '#3f3f46';
+      ctx.fillStyle = odd ? '#e2e8f0' : '#f8fafc';
       ctx.fillRect(x, y, size, size);
     }
   }
@@ -72,20 +72,20 @@ function draw() {
 
   // Split line
   const sx = w * split.value;
-  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fillStyle = 'rgba(15,23,42,0.55)';
   ctx.fillRect(sx - 1, 0, 2, h);
   ctx.beginPath();
   ctx.arc(sx, h / 2, 14, 0, Math.PI * 2);
-  ctx.fillStyle = '#27272a';
+  ctx.fillStyle = '#ffffff';
   ctx.fill();
-  ctx.strokeStyle = '#34d399';
+  ctx.strokeStyle = '#0ea5e9';
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  ctx.fillStyle = 'rgba(39,39,42,0.85)';
+  ctx.fillStyle = 'rgba(255,255,255,0.92)';
   ctx.fillRect(12, 12, 92, 28);
   ctx.fillRect(w - 72, 12, 60, 28);
-  ctx.fillStyle = '#e4e4e7';
+  ctx.fillStyle = '#0f172a';
   ctx.font = '14px ui-sans-serif, system-ui, -apple-system, sans-serif';
   ctx.fillText('Original', 22, 31);
   ctx.fillText('JXL', w - 52, 31);
@@ -165,7 +165,7 @@ defineExpose({ setZoom, resetView, zoom });
   <div class="flex h-full min-h-[360px] flex-col gap-3">
     <div
       ref="containerRef"
-      class="relative min-h-[320px] flex-1 overflow-hidden rounded-xl border border-white/10 bg-zinc-800"
+      class="relative min-h-[320px] flex-1 overflow-hidden rounded-sm border border-slate-200 bg-slate-100"
     >
       <canvas
         ref="canvasRef"
@@ -177,7 +177,7 @@ defineExpose({ setZoom, resetView, zoom });
       />
       <div
         v-if="!original && !preview"
-        class="absolute inset-0 flex items-center justify-center text-base text-zinc-400"
+        class="absolute inset-0 flex items-center justify-center text-base font-semibold text-slate-700"
       >
         Drop an image to inspect
       </div>
@@ -185,36 +185,36 @@ defineExpose({ setZoom, resetView, zoom });
     <div class="flex flex-wrap items-center gap-2">
       <button
         type="button"
-        class="rounded-lg border border-white/10 bg-zinc-700 px-3.5 py-2 text-sm text-zinc-200 hover:border-white/20"
+        class="rounded-full border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
         @click="setZoom(zoom - 0.25)"
       >
         −
       </button>
-      <span class="min-w-14 text-center font-mono text-sm text-zinc-300">{{ zoomLabel }}</span>
+      <span class="min-w-14 text-center font-mono text-sm font-semibold text-slate-900">{{ zoomLabel }}</span>
       <button
         type="button"
-        class="rounded-lg border border-white/10 bg-zinc-700 px-3.5 py-2 text-sm text-zinc-200 hover:border-white/20"
+        class="rounded-full border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
         @click="setZoom(zoom + 0.25)"
       >
         +
       </button>
       <button
         type="button"
-        class="rounded-lg border border-white/10 bg-zinc-700 px-3.5 py-2 text-sm text-zinc-200 hover:border-white/20"
+        class="rounded-full border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
         @click="setZoom(1)"
       >
         100%
       </button>
       <button
         type="button"
-        class="rounded-lg border border-white/10 bg-zinc-700 px-3.5 py-2 text-sm text-zinc-200 hover:border-white/20"
+        class="rounded-full border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
         @click="setZoom(4)"
       >
         400%
       </button>
       <button
         type="button"
-        class="rounded-lg border border-white/10 bg-zinc-700 px-3.5 py-2 text-sm text-zinc-200 hover:border-white/20"
+        class="rounded-full border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
         @click="resetView"
       >
         Reset

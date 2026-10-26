@@ -12,15 +12,15 @@ interface Props {
 }
 
 const {
-  title = 'Free Online JPEG XL (JXL) Converter & Compression Studio',
-  description = 'Convert PNG, JPG, and WebP images to next-gen JPEG XL (JXL) instantly in your browser. 100% free, private, and powered by WebAssembly. No uploads required.',
+  title = 'PictoJXL — Private JPEG XL Converter in Your Browser',
+  description = 'Turn PNG, JPG, WebP, and AVIF into JPEG XL with PictoJXL. Encode on-device with WebAssembly, inspect side by side, and export ZIP batches—no uploads.',
   canonicalPath = '/',
   ogImage = '/og.png',
   keywords = [
-    'jxl converter',
-    'jpeg xl converter online',
-    'squoosh alternative',
-    'compress images to jxl',
+    'pictojxl',
+    'jpeg xl converter',
+    'convert images to jxl',
+    'private jxl encoder',
   ],
   jsonLd,
 } = Astro.props;
@@ -48,6 +48,28 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
+
+const footerConvertLinks = [
+  { href: '/png-to-jxl', label: 'PNG to JXL' },
+  { href: '/jpg-to-jxl', label: 'JPG to JXL' },
+  { href: '/webp-to-jxl', label: 'WebP to JXL' },
+  { href: '/avif-to-jxl', label: 'AVIF to JXL' },
+  { href: '/jxl-to-jpg', label: 'JXL to JPG' },
+  { href: '/bulk-jxl-converter', label: 'Bulk converter' },
+];
+
+const footerCompanyLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const footerLegalLinks = [
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/terms-of-service', label: 'Terms of Service' },
+  { href: '/cookie-policy', label: 'Cookie Policy' },
+];
+
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -65,6 +87,7 @@ const navLinks = [
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap.xml" />
 
@@ -91,118 +114,214 @@ const navLinks = [
     }
   </head>
   <body class="font-sans antialiased">
-    <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-800/85 backdrop-blur-xl">
-      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3">
-        <a href="/" class="group flex min-w-0 items-center no-underline" aria-label="pictojxl home">
-          <img
-            src="/logo.png"
-            alt="pictojxl"
-            width="1000"
-            height="247"
-            class="h-[30px] w-auto max-w-[min(75vw,15rem)] object-contain object-left sm:h-[28px] sm:max-w-[16rem] md:h-[34px] md:max-w-[18rem]"
-            decoding="async"
-          />
-        </a>
-
-        <nav class="hidden items-center gap-5 text-base text-zinc-300 md:flex" aria-label="Primary">
-          {navLinks.slice(0, 4).map((link) => (
-            <a href={link.href} class="transition hover:text-zinc-100">
-              {link.label}
+    <div class="w-full pb-0">
+      <div class="shell min-h-screen overflow-hidden rounded-none">
+        <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/70 backdrop-blur-xl">
+          <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
+            <a
+              href="/"
+              class="group flex min-w-0 items-center overflow-hidden rounded-sm bg-[#0b1220] px-2.5 py-1.5 no-underline ring-1 ring-slate-900/10"
+              aria-label="pictojxl home"
+            >
+              <img
+                src="/logo.png"
+                alt="pictojxl"
+                width="1000"
+                height="261"
+                class="h-[30px] w-auto max-w-[min(70vw,14rem)] object-contain object-left sm:h-[28px] sm:max-w-[15rem] md:h-[34px] md:max-w-[17rem]"
+                decoding="async"
+              />
             </a>
-          ))}
-        </nav>
 
-        <button
-          type="button"
-          id="mobile-nav-toggle"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-100 transition hover:bg-zinc-800 md:hidden"
-          aria-controls="mobile-nav"
-          aria-expanded="false"
-          aria-label="Open menu"
-        >
-          <svg
-            id="mobile-nav-icon-open"
-            class="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            aria-hidden="true"
-          >
-            <path d="M4 7h16M4 12h16M4 17h16"></path>
-          </svg>
-          <svg
-            id="mobile-nav-icon-close"
-            class="hidden h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            aria-hidden="true"
-          >
-            <path d="M6 6l12 12M18 6L6 18"></path>
-          </svg>
-        </button>
-      </div>
+            <nav
+              class="hidden items-center gap-1 rounded-full border border-slate-200/80 bg-slate-100/80 p-1 text-sm text-slate-600 md:flex"
+              aria-label="Primary"
+            >
+              {
+                navLinks.slice(0, 4).map((link) => (
+                  <a
+                    href={link.href}
+                    class="rounded-full px-3.5 py-2 transition hover:bg-white hover:text-slate-900"
+                  >
+                    {link.label}
+                  </a>
+                ))
+              }
+            </nav>
 
-      <nav
-        id="mobile-nav"
-        class="hidden border-t border-white/10 bg-zinc-900/95 md:hidden"
-        aria-label="Mobile"
-        hidden
-      >
-        <div class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 sm:px-6">
-          {
-            navLinks.map((link) => (
-              <a
-                href={link.href}
-                class="rounded-lg px-3 py-3 text-base text-zinc-200 transition hover:bg-white/5 hover:text-zinc-50"
+            <button
+              type="button"
+              id="mobile-nav-toggle"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50 md:hidden"
+              aria-controls="mobile-nav"
+              aria-expanded="false"
+              aria-label="Open menu"
+            >
+              <svg
+                id="mobile-nav-icon-open"
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                aria-hidden="true"
               >
-                {link.label}
-              </a>
-            ))
-          }
-        </div>
-      </nav>
-    </header>
-
-    <!-- Top leaderboard ad slot reserved for later AdSense rollout
-    <div class="mx-auto max-w-7xl px-4 pt-4 sm:px-6">
-      <AdSlot id="top-leaderboard" width={728} height={90} class="mx-auto max-w-[728px]" />
-    </div>
-    -->
-
-    <main>
-      <slot />
-    </main>
-
-    <footer class="mt-16 border-t border-white/10 bg-zinc-800/50">
-      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 text-base text-zinc-400 sm:px-6">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} pictojxl.com — a product of Webwise Private Company Ltd
-            (USA). Private, client-side JPEG XL conversion.
-          </p>
-          <div class="flex flex-wrap gap-x-4 gap-y-2">
-            <a href="/png-to-jxl" class="hover:text-zinc-200">PNG to JXL</a>
-            <a href="/jpg-to-jxl" class="hover:text-zinc-200">JPG to JXL</a>
-            <a href="/webp-to-jxl" class="hover:text-zinc-200">WebP to JXL</a>
-            <a href="/avif-to-jxl" class="hover:text-zinc-200">AVIF to JXL</a>
-            <a href="/jxl-to-jpg" class="hover:text-zinc-200">JXL to JPG</a>
-            <a href="/bulk-jxl-converter" class="hover:text-zinc-200">Bulk</a>
+                <path d="M4 7h16M4 12h16M4 17h16"></path>
+              </svg>
+              <svg
+                id="mobile-nav-icon-close"
+                class="hidden h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M6 6l12 12M18 6L6 18"></path>
+              </svg>
+            </button>
           </div>
-        </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-2 border-t border-white/5 pt-6 text-sm">
-          <a href="/about" class="hover:text-zinc-200">About</a>
-          <a href="/contact" class="hover:text-zinc-200">Contact</a>
-          <a href="/privacy-policy" class="hover:text-zinc-200">Privacy Policy</a>
-          <a href="/terms-of-service" class="hover:text-zinc-200">Terms of Service</a>
-          <a href="/cookie-policy" class="hover:text-zinc-200">Cookie Policy</a>
-        </div>
+
+          <nav
+            id="mobile-nav"
+            class="hidden border-t border-slate-200/80 bg-white/95 md:hidden"
+            aria-label="Mobile"
+            hidden
+          >
+            <div class="flex flex-col gap-1 px-4 py-3">
+              {
+                navLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    class="rounded-2xl px-3 py-3 text-base text-slate-700 transition hover:bg-sky-50 hover:text-slate-950"
+                  >
+                    {link.label}
+                  </a>
+                ))
+              }
+            </div>
+          </nav>
+        </header>
+
+        <main class="px-0">
+          <slot />
+        </main>
+
+        <footer class="mt-12 border-t border-slate-200 bg-slate-950 text-slate-300">
+          <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-14">
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-16">
+              <div class="max-w-md">
+                <a
+                  href="/"
+                  class="inline-flex items-center overflow-hidden rounded-sm bg-[#0b1220] px-2.5 py-1.5 ring-1 ring-white/10"
+                  aria-label="pictojxl home"
+                >
+                  <img
+                    src="/logo.png"
+                    alt="pictojxl"
+                    width="1000"
+                    height="261"
+                    class="h-7 w-auto object-contain object-left"
+                    decoding="async"
+                  />
+                </a>
+                <p class="mt-5 text-base leading-relaxed text-slate-300">
+                  PictoJXL encodes JPEG XL in your tab. Compare originals, tune settings, and save
+                  .jxl files without creating a remote copy of your pictures.
+                </p>
+                <p
+                  class="mt-5 inline-flex items-center gap-2 rounded-sm border border-sky-400/30 bg-sky-500/10 px-3 py-2 text-sm font-semibold text-sky-200"
+                >
+                  <span class="size-1.5 rounded-full bg-sky-400" aria-hidden="true"></span>
+                  Encodes locally · nothing uploaded for conversion
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+                <div>
+                  <h2 class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                    Convert
+                  </h2>
+                  <ul class="mt-4 space-y-2.5">
+                    {
+                      footerConvertLinks.map((link) => (
+                        <li>
+                          <a
+                            href={link.href}
+                            class="text-sm font-medium text-slate-200 transition hover:text-white"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+                <div>
+                  <h2 class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                    Company
+                  </h2>
+                  <ul class="mt-4 space-y-2.5">
+                    {
+                      footerCompanyLinks.map((link) => (
+                        <li>
+                          <a
+                            href={link.href}
+                            class="text-sm font-medium text-slate-200 transition hover:text-white"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))
+                    }
+                    <li>
+                      <a
+                        href="mailto:support@pictojxl.com"
+                        class="text-sm font-medium text-slate-200 transition hover:text-white"
+                      >
+                        support@pictojxl.com
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <h2 class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                    Legal
+                  </h2>
+                  <ul class="mt-4 space-y-2.5">
+                    {
+                      footerLegalLinks.map((link) => (
+                        <li>
+                          <a
+                            href={link.href}
+                            class="text-sm font-medium text-slate-200 transition hover:text-white"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <p>
+                © {year} pictojxl.com
+              </p>
+              <p class="font-medium text-slate-400">
+                Built for private, on-device conversion
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
-    </footer>
+    </div>
 
     <script>
       const toggle = document.getElementById('mobile-nav-toggle');

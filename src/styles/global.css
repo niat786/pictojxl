@@ -5,15 +5,23 @@
     "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
-  --color-studio-bg: #1c1c22;
-  --color-studio-panel: rgb(39 39 46 / 0.82);
-  --color-studio-border: rgb(255 255 255 / 0.12);
-  --color-accent: #34d399;
-  --color-accent-2: #818cf8;
+  --color-studio-bg: #e8eef5;
+  --color-studio-shell: #f4f7fb;
+  --color-studio-card: #ffffff;
+  --color-studio-ink: #020617;
+  --color-studio-muted: #334155;
+  --color-studio-border: rgb(15 23 42 / 0.08);
+  --color-accent: #38bdf8;
+  --color-accent-strong: #0ea5e9;
+  --color-accent-2: #38bdf8;
+  --radius-shell: 0.125rem;
+  --radius-card: 0.125rem;
+  --shadow-soft: 0 18px 50px rgb(15 23 42 / 0.08);
+  --shadow-card: 0 8px 24px rgb(15 23 42 / 0.06);
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
   font-size: 16px;
 }
@@ -24,31 +32,46 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.6;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgb(16 185 129 / 0.16), transparent 55%),
-    radial-gradient(900px 500px at 90% 0%, rgb(99 102 241 / 0.16), transparent 50%),
-    #1c1c22;
-  color: #f4f4f5;
+  background: var(--color-studio-shell);
+  color: var(--color-studio-ink);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgb(52 211 153 / 0.35);
+  background: rgb(56 189 248 / 0.35);
+}
+
+.shell {
+  background: rgb(244 247 251 / 0.92);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgb(255 255 255 / 0.7);
+  box-shadow: var(--shadow-soft);
+}
+
+.card {
+  background: var(--color-studio-card);
+  border: 1px solid var(--color-studio-border);
+  box-shadow: var(--shadow-card);
 }
 
 .glass {
-  background: var(--color-studio-panel);
+  background: rgb(255 255 255 / 0.78);
   backdrop-filter: blur(16px);
-  border: 1px solid var(--color-studio-border);
+  border: 1px solid rgb(255 255 255 / 0.9);
+  box-shadow: var(--shadow-card);
+}
+
+.pill {
+  border-radius: 9999px;
 }
 
 .ad-label {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgb(161 161 170);
+  color: #94a3b8;
 }
 
 input[type="range"] {
-  accent-color: #34d399;
+  accent-color: #0ea5e9;
 }

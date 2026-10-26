@@ -25,11 +25,13 @@ export const useConverterStore = defineStore('converter', () => {
   const mode = ref<StudioMode>('single');
   const items = ref<QueueItem[]>([]);
   const activeId = ref<string | null>(null);
-  const options = ref<EncodeOptions>({
+  const DEFAULT_OPTIONS: EncodeOptions = {
     quality: 75,
     effort: 7,
     lossless: false,
-  });
+  };
+
+  const options = ref<EncodeOptions>({ ...DEFAULT_OPTIONS });
   const isPaused = ref(false);
   const isBusy = ref(false);
   const originalBitmap = shallowRef<ImageBitmap | null>(null);
@@ -352,10 +354,14 @@ export const useConverterStore = defineStore('converter', () => {
   }
 
   async function clearAll() {
+    queue?.clear();
+    isPaused.value = false;
+    isBusy.value = false;
     revokeThumbnails();
     closeBitmaps();
     items.value = [];
     activeId.value = null;
+    options.value = { ...DEFAULT_OPTIONS };
     lastError.value = null;
     dismissMemoryWarning();
     await clearOpfsOutputs();

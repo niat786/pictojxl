@@ -1,60 +1,60 @@
 ---
-title: "JXL to JPG Converter — Decode JPEG XL Online | pictojxl.com"
-description: "Decode JXL to JPG locally for inspection and compatibility checks. Free JPEG XL decoder online with private browser processing and no uploads."
-h1: "JXL to JPG Converter"
-subheadline: "Decode JPEG XL locally to inspect pixels and plan compatibility workflows. Everything stays on your device."
+title: "JXL to JPG — Decode JPEG XL Locally | PictoJXL"
+description: "Open and decode .jxl files in your browser for QA and compatibility previews. Private JPEG XL decoding on pictojxl.com with no uploads."
+h1: "JXL to JPG — Decode JPEG XL Locally"
+subheadline: "Inspect JPEG XL masters on-device and plan JPEG fallbacks for tools that cannot open .jxl yet."
 dropzoneLabel: "Drop .jxl files to decode"
-acceptHint: "Still JPEG XL (.jxl) inputs"
+acceptHint: "Still JPEG XL inputs"
 keywords:
   - jxl to jpg
-  - jpeg xl decoder online
-  - open jxl file
-  - convert jxl to jpeg
+  - decode jpeg xl
+  - open jxl online
+  - jpeg xl to jpeg
 priority: 0.7
 defaultMode: single
 breadcrumbName: "JXL to JPG"
-comparisonTitle: "When decoding JXL helps"
+comparisonTitle: "Why teams decode JXL"
 howToSteps:
-  - "Drop a .jxl file into the studio."
-  - "Inspect the decoded preview."
-  - "Use the result for QA or compatibility planning."
+  - "Drop a .jxl file into PictoJXL."
+  - "Review the decoded preview at normal and zoomed views."
+  - "Use the result for QA notes or compatibility planning."
 comparisonRows:
-  - format: JXL
-    strength: "Modern compression"
-    jxlAdvantage: "Source format for this workflow"
+  - format: JPEG XL
+    strength: "Modern compression master"
+    jxlAdvantage: "Source format for this decode path"
   - format: JPEG
-    strength: "Universal viewing"
-    jxlAdvantage: "Common compatibility target"
+    strength: "Opens in nearly every tool"
+    jxlAdvantage: "Common preview / fallback target"
   - format: PNG
-    strength: "Lossless graphics"
-    jxlAdvantage: "Alternative decode target for UI"
+    strength: "Lossless graphics share"
+    jxlAdvantage: "Alternate target when UI needs alpha"
 faqs:
-  - question: "Can every browser open JXL?"
-    answer: "Not yet. Support varies by engine. Decoding locally helps with QA and stakeholder previews."
-  - question: "Do you upload my JXL files?"
-    answer: "No. Decoding happens in your browser with WebAssembly."
-  - question: "Is this a full jpeg xl decoder online?"
-    answer: "Yes for still images. Drop a .jxl file, inspect pixels, and plan a compatibility export when you need broader viewing support."
-  - question: "Should I keep the JXL master after converting?"
-    answer: "Yes when JXL is your archival or delivery source. Use JPG as a fallback or preview, not as the only copy."
+  - question: "Can every browser display JXL natively?"
+    answer: "Not yet. Engine support differs. Local decode helps with QA and sharing previews."
+  - question: "Do my .jxl files upload?"
+    answer: "No. Decoding runs in the browser with WebAssembly."
+  - question: "Is this enough for stakeholder review?"
+    answer: "For still images, yes—drop the file, inspect pixels, and plan a JPEG export when someone needs a universally openable copy."
+  - question: "Should I delete the JXL after making a JPG?"
+    answer: "Keep the JXL if it is your archival or delivery source. Treat JPG as a preview or fallback, not the only master."
 ---
 
-Need a private way to **open jxl file** previews or **convert jxl to jpeg** for stakeholders? This **jxl to jpg** workflow is a **jpeg xl decoder online** that runs in your browser. WebAssembly handles the decode, so nothing uploads to our servers.
+Need to **open jxl online** for a quick look, or plan a **jpeg xl to jpeg** handoff for a teammate on older software? This **jxl to jpg** page is a private decode path: WebAssembly handles the file in your tab, and pictojxl.com never stores the bytes.
 
-## When decoding JXL helps
+## When a decode pass helps
 
-JPEG XL support is still uneven across browsers and design tools. Therefore teams often keep a `.jxl` master and produce a JPEG preview for email, slides, or older viewers. Local decoding also helps QA: you can inspect artifacts before you publish a conversion pipeline.
+JPEG XL support is uneven across browsers and creative tools. Teams often keep a `.jxl` master and produce a JPEG for email, decks, or legacy viewers. Decoding locally also catches encode surprises before a pipeline goes live.
 
-Use this page for inspection and compatibility planning. Keep your JXL originals when they are the archival source.
+Use this page for inspection and compatibility planning. Preserve JXL originals whenever they are the source of truth.
 
-## How to decode JPEG XL in the studio
+## Decode in three steps
 
-1. Drop a `.jxl` file into the workspace above.
-2. Review the decoded preview at normal zoom, then push zoom if you need edge detail.
-3. Export or capture what you need for QA notes and stakeholder review.
+1. Drop a `.jxl` into the workspace.
+2. View the preview; zoom when you need edge or text detail.
+3. Capture what you need for QA notes or a stakeholder share.
 
-Because the work stays on-device, personal photo archives remain private during checks.
+Because the work stays on-device, personal archives remain private during checks.
 
-## Related conversion paths
+## Build the library the other direction
 
-If you are building JXL libraries from legacy formats, start with [JPG to JXL](/jpg-to-jxl), [PNG to JXL](/png-to-jxl), [WebP to JXL](/webp-to-jxl), or [AVIF to JXL](/avif-to-jxl). Large folders belong on the [Bulk JXL Converter](/bulk-jxl-converter). For a general overview of the codec and studio, open the main [JPEG XL converter](/).
+Create JXL from [JPG](/jpg-to-jxl), [PNG](/png-to-jxl), [WebP](/webp-to-jxl), or [AVIF](/avif-to-jxl). Large folders → [Bulk JXL Converter](/bulk-jxl-converter). Overview of the studio → [PictoJXL home](/).

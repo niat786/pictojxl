@@ -32,7 +32,6 @@ const allConverted = computed(
   () => items.value.length > 1 && items.value.every((i) => i.status === 'done'),
 );
 
-/** Once every image is converted, swap Convert & Next for Prev / Next browse. */
 const showStepBrowse = computed(
   () => mode.value === 'step-by-step' && allConverted.value,
 );
@@ -59,16 +58,18 @@ function onLossless(e: Event) {
 </script>
 
 <template>
-  <aside class="glass flex h-full flex-col gap-5 rounded-2xl p-5">
+  <aside class="card flex h-full flex-col gap-5 rounded-sm p-5 sm:p-6">
     <div>
-      <h2 class="text-base font-semibold text-zinc-100">Encode settings</h2>
-      <p class="mt-1 text-sm text-zinc-400">Changes re-encode the active image.</p>
+      <h2 class="text-base font-bold text-slate-950">Encode settings</h2>
+      <p class="mt-1 text-sm font-medium text-slate-700">Changes re-encode the active image.</p>
     </div>
 
     <label class="block space-y-2">
-      <div class="flex items-center justify-between text-sm text-zinc-300">
+      <div class="flex items-center justify-between text-sm font-semibold text-slate-800">
         <span>Quality</span>
-        <span class="font-mono text-zinc-100">{{ options.quality }}</span>
+        <span class="rounded-full bg-slate-200 px-2.5 py-0.5 font-mono text-slate-950">
+          {{ options.quality }}
+        </span>
       </div>
       <input
         type="range"
@@ -82,9 +83,11 @@ function onLossless(e: Event) {
     </label>
 
     <label class="block space-y-2">
-      <div class="flex items-center justify-between text-sm text-zinc-300">
+      <div class="flex items-center justify-between text-sm font-semibold text-slate-800">
         <span>Effort</span>
-        <span class="font-mono text-zinc-100">{{ options.effort }}</span>
+        <span class="rounded-full bg-slate-200 px-2.5 py-0.5 font-mono text-slate-950">
+          {{ options.effort }}
+        </span>
       </div>
       <input
         type="range"
@@ -96,10 +99,12 @@ function onLossless(e: Event) {
       />
     </label>
 
-    <label class="flex items-center gap-2.5 text-base text-zinc-200">
+    <label
+      class="flex items-center gap-3 rounded-sm border border-slate-300 bg-slate-100 px-3.5 py-3 text-base font-semibold text-slate-900"
+    >
       <input
         type="checkbox"
-        class="size-4 rounded border-white/20 bg-zinc-700"
+        class="size-4 rounded border-slate-400"
         :checked="options.lossless"
         @change="onLossless"
       />
@@ -108,13 +113,13 @@ function onLossless(e: Event) {
 
     <div
       v-if="savingsLabel"
-      class="rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-3.5"
+      class="rounded-sm bg-gradient-to-br from-sky-700 to-sky-500 px-4 py-4 text-white shadow-lg shadow-sky-600/25"
     >
-      <div class="text-xs uppercase tracking-wider text-emerald-400/90">Saved</div>
-      <div class="mt-1 font-mono text-xl font-semibold text-emerald-300">
+      <div class="text-xs font-semibold uppercase tracking-wider text-white">Saved</div>
+      <div class="mt-1 font-mono text-3xl font-bold tracking-tight text-white">
         -{{ savingsLabel.pct }}%
       </div>
-      <div class="mt-1 font-mono text-sm text-zinc-300">
+      <div class="mt-1 font-mono text-sm font-medium text-white">
         {{ savingsLabel.original }} → {{ savingsLabel.jxl }}
       </div>
     </div>
@@ -122,7 +127,7 @@ function onLossless(e: Event) {
     <div class="mt-auto flex flex-col gap-2.5 pt-2">
       <button
         type="button"
-        class="rounded-xl border border-white/10 bg-zinc-700/80 px-4 py-3 text-base text-zinc-100 hover:border-white/20 disabled:opacity-40"
+        class="rounded-full border border-slate-300 bg-white px-4 py-3 text-base font-semibold text-slate-950 shadow-sm hover:bg-slate-50 disabled:opacity-40"
         :disabled="!activeItem || isBusy"
         @click="store.reencodeActive()"
       >
@@ -132,13 +137,13 @@ function onLossless(e: Event) {
       <button
         v-if="showConvertNext"
         type="button"
-        class="cursor-pointer rounded-xl bg-indigo-500 px-4 py-3 text-base font-semibold text-white hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-40"
+        class="cursor-pointer rounded-full bg-slate-950 px-4 py-3 text-base font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
         :disabled="!activeItem || isBusy"
         @click="store.convertAndNext()"
       >
         <template v-if="stepIndex?.isLast">Convert</template>
         <template v-else>Convert &amp; Next</template>
-        <span v-if="stepIndex" class="font-mono opacity-80">
+        <span v-if="stepIndex" class="font-mono text-white/90">
           ({{ stepIndex.current }}/{{ stepIndex.total }})
         </span>
       </button>
@@ -146,7 +151,7 @@ function onLossless(e: Event) {
       <div v-if="showStepBrowse" class="grid grid-cols-2 gap-2">
         <button
           type="button"
-          class="cursor-pointer rounded-xl border border-white/10 bg-zinc-700/80 px-4 py-3 text-base font-semibold text-zinc-100 hover:border-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+          class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-3 text-base font-semibold text-slate-950 shadow-sm hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
           :disabled="!stepIndex || stepIndex.isFirst || isBusy"
           @click="store.goPrev()"
         >
@@ -154,20 +159,20 @@ function onLossless(e: Event) {
         </button>
         <button
           type="button"
-          class="cursor-pointer rounded-xl border border-white/10 bg-zinc-700/80 px-4 py-3 text-base font-semibold text-zinc-100 hover:border-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+          class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-3 text-base font-semibold text-slate-950 shadow-sm hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
           :disabled="!stepIndex || stepIndex.isLast || isBusy"
           @click="store.goNext()"
         >
           Next →
         </button>
-        <p class="col-span-2 text-center font-mono text-sm text-zinc-400">
+        <p class="col-span-2 text-center font-mono text-sm font-medium text-slate-700">
           {{ stepIndex?.current }}/{{ stepIndex?.total }} converted
         </p>
       </div>
 
       <button
         type="button"
-        class="cursor-pointer rounded-xl bg-emerald-500 px-4 py-3.5 text-base font-semibold text-zinc-950 hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-40"
+        class="cursor-pointer rounded-full bg-sky-600 px-4 py-3.5 text-base font-semibold text-white shadow-md shadow-sky-600/25 hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-40"
         :disabled="!activeItem || activeItem.status !== 'done'"
         @click="activeItem && store.downloadItem(activeItem.id)"
       >

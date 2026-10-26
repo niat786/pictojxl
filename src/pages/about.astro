@@ -3,13 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import LegalPage from '../components/LegalPage.astro';
 import { absoluteUrl, buildBreadcrumbLd, buildWebApplicationLd } from '../lib/seo';
 
-const title = 'About pictojxl.com | Webwise Private Company Ltd';
+const title = 'About PictoJXL | pictojxl.com';
 const description =
-  'About pictojxl.com — a private, browser-based JPEG XL converter built by Webwise Private Company Ltd (USA) and an expert team of developers.';
+  'PictoJXL is a private, browser-based JPEG XL studio from Webwise Private Company Ltd—encode, compare, and batch-export without uploading images.';
 
 const jsonLd = [
   buildWebApplicationLd({
-    name: 'PictoJXL by Webwise',
+    name: 'PictoJXL',
     description,
     url: absoluteUrl('/about'),
   }),
@@ -22,44 +22,45 @@ const jsonLd = [
 
 <Layout title={title} description={description} canonicalPath="/about" jsonLd={jsonLd}>
   <LegalPage
-    title="About pictojxl.com"
-    description="Who we are and why we built a private, zero-upload JXL conversion studio."
+    title="About PictoJXL"
+    description="A short note on who builds pictojxl.com and what the studio is for."
+    updated="October 27, 2026"
   >
     <p>
-      <strong>pictojxl.com</strong> is a product of
-      <strong>Webwise Private Company Ltd</strong>, a United States company. It is built by an
-      expert team of developers focused on high-performance, privacy-first web utilities.
+      <strong>PictoJXL</strong> lives at <strong>pictojxl.com</strong>. It is published by
+      <strong>Webwise Private Company Ltd</strong>, a United States company whose developers focus on
+      fast, privacy-minded browser utilities.
     </p>
 
-    <h2>Why this tool exists</h2>
+    <h2>The problem we wanted to avoid</h2>
     <p>
-      Most online image converters ask you to upload files to a remote server. That creates privacy
-      risk, upload size caps, and slow round-trips. We built pictojxl.com to provide a fast,
-      private, zero-upload JPEG XL (JXL) conversion experience—running entirely in the browser.
+      Upload-to-convert sites copy your files to someone else’s disk, often with size caps and slow
+      round-trips. PictoJXL takes the opposite route: JPEG XL encode and decode stay in the tab you
+      already opened. You get a working studio without creating a remote copy of the shoot.
     </p>
 
-    <h2>How the WebAssembly engine works</h2>
+    <h2>How the engine feels in practice</h2>
     <p>
-      When you drop an image, decoding and JXL encoding execute locally through WebAssembly and Web
-      Workers on your device. A Squoosh-style split inspector helps you compare quality before
-      download, and bulk mode can queue many files with ZIP export. Your photos never need to leave
-      your computer for conversion to complete.
+      Drop a picture and WebAssembly workers handle decode and JXL encode on your hardware. A split
+      inspector shows original versus result before you download. When you bring a folder, Queue mode
+      can run several jobs and pack a ZIP. The point is a calm, local workflow—not a black-box cloud
+      job.
     </p>
 
-    <h2>What we offer</h2>
+    <h2>What you will find on the site</h2>
     <ul>
-      <li>Single-image inspection and encode controls</li>
-      <li>Step-by-step and bulk queue workflows</li>
-      <li>Format-specific landing pages such as PNG→JXL, JPG→JXL, and WebP→JXL</li>
-      <li>Transparent legal pages for privacy, terms, and cookies</li>
+      <li>Single-image inspection with Quality, Effort, and Lossless controls</li>
+      <li>Step-by-step and auto-queue modes for multi-file work</li>
+      <li>Dedicated routes for PNG, JPG, WebP, AVIF, bulk ZIP, and JXL decode</li>
+      <li>Plain-language privacy, terms, and cookie pages</li>
     </ul>
 
-    <h2>Company</h2>
+    <h2>Publisher</h2>
     <p>
-      <strong>Webwise Private Company Ltd</strong> (USA)<br />
-      Product: pictojxl.com — PictoJXL<br />
+      Webwise Private Company Ltd<br />
+      Product: PictoJXL · pictojxl.com<br />
       Support: <a href="mailto:support@pictojxl.com">support@pictojxl.com</a><br />
-      Contact page: <a href="/contact">/contact</a>
+      <a href="/contact">Contact page</a>
     </p>
   </LegalPage>
 </Layout>
