@@ -1,0 +1,30 @@
+# Project Specification: High-Performance JXL Image Converter & Bulk Studio
+
+Domain: pictojxl.com | Brand: PictoJXL
+
+## 1. Tech Stack & Architecture
+- **Framework:** Astro 5+ (Static Site Generation for 100/100 Lighthouse SEO) with **Vue 3 (Composition API, `<script setup lang="ts">`)** interactive Islands (`client:load`).
+- **Styling:** Tailwind CSS (Sleek, macOS-inspired dark mode aesthetic: `bg-zinc-950`, glassmorphic panels `bg-zinc-900/70 backdrop-blur-md`, subtle `border-white/10`, high-contrast typography, vibrant emerald/indigo accents).
+- **State & Queue Engine:** Pinia (or Vue reactive store) + `p-queue` for strict concurrency control.
+- **Worker RPC:** `comlink` + Web Workers (`type: 'module'`).
+- **Codec Engine:** `@jsquash/jxl` (encode & decode), `@jsquash/webp`, `@jsquash/avif` (for decoding modern inputs).
+- **Memory Management:** Origin Private File System (OPFS) via `navigator.storage.getDirectory()` so converted `.jxl` buffers are flushed to disk immediately and never bloat browser RAM.
+- **Bulk Export:** `fflate` (using `level: 0` STORE mode for instant zero-CPU zipping).
+
+## 2. Core Functional Requirements
+1. **Three Seamless Modes in One Workspace:**
+   - **Single Inspector Mode (Squoosh-style):** Activated when 1 image is uploaded or when user clicks "Inspect" on any queue item. Features a 50/50 interactive split-screen comparison slider, Pan & Zoom (`100%` to `400%`), live Quality (0-100), Effort (1-9), and Lossless toggles, plus real-time byte-size savings badge.
+   - **One-by-One Step Mode:** When >1 images are uploaded and user selects "Step-by-Step Mode", load Image #1 in the Split Inspector, allow custom slider tweaks, and show a primary button: "Convert & Next Image (1/N)".
+   - **Auto Queue Mode:** Processes multiple images automatically (`concurrency: 2` or `3` based on `navigator.hardwareConcurrency`). Features Pause/Resume Queue, Remove Item, Per-Row Download, and "Download All (.ZIP)".
+2. **AdSense-Safe Layout (Zero CLS):**
+   - Create a reusable `<AdSlot id="..." width="..." height="..." />` component with fixed minimum dimensions (`min-h-[90px]` for leaderboard, `min-h-[250px]` for sidebar rectangle) so ads never shift the UI or overlap action buttons (maintain >24px padding from all buttons).
+   - Do NOT use `Cross-Origin-Embedder-Policy: require-corp` as it blocks AdSense iframes. Instead, achieve parallel speed by spawning a Worker Pool of `Math.min(4, navigator.hardwareConcurrency || 2)` workers.
+3. **Programmatic SEO Architecture:**
+   - Support dynamic Astro routes (`/[slug].astro`) for high-volume search intents: `/png-to-jxl`, `/jpg-to-jxl`, `/webp-to-jxl`, `/avif-to-jxl`, `/jxl-to-jpg`, and `/bulk-jxl-converter`.
+   - Each route pre-configures the tool's title/dropzone label and renders unique static H1, H2, FAQ accordion, and JSON-LD (`SoftwareApplication` + `FAQPage`) schema.
+
+## 3. Coding Standards
+- Strictly typed TypeScript. No `any` where avoidable.
+- Always exclude `@jsquash/jxl` from `vite.optimizeDeps` in `astro.config.mjs`.
+- In Web Workers, always call `bitmap.close()` immediately after drawing to `OffscreenCanvas` to prevent memory leaks.
+- Revoke all `URL.createObjectURL()` references on unmount or queue clear.

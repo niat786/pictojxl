@@ -1,0 +1,237 @@
+---
+import '../styles/global.css';
+import { absoluteUrl, buildWebApplicationLd } from '../lib/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  keywords?: string[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = 'Free Online JPEG XL (JXL) Converter & Compression Studio',
+  description = 'Convert PNG, JPG, and WebP images to next-gen JPEG XL (JXL) instantly in your browser. 100% free, private, and powered by WebAssembly. No uploads required.',
+  canonicalPath = '/',
+  ogImage = '/og.png',
+  keywords = [
+    'jxl converter',
+    'jpeg xl converter online',
+    'squoosh alternative',
+    'compress images to jxl',
+  ],
+  jsonLd,
+} = Astro.props;
+
+const canonical = absoluteUrl(canonicalPath);
+const absoluteOg = absoluteUrl(ogImage);
+
+const defaultJsonLd = buildWebApplicationLd({
+  name: 'PictoJXL',
+  description,
+  url: absoluteUrl('/'),
+});
+
+const schemas = jsonLd
+  ? Array.isArray(jsonLd)
+    ? jsonLd
+    : [jsonLd]
+  : [defaultJsonLd];
+
+const navLinks = [
+  { href: '/png-to-jxl', label: 'PNG→JXL' },
+  { href: '/jpg-to-jxl', label: 'JPG→JXL' },
+  { href: '/webp-to-jxl', label: 'WebP→JXL' },
+  { href: '/bulk-jxl-converter', label: 'Bulk' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(', ')} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="pictojxl" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteOg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta property="og:image:type" content="image/png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOg} />
+
+    {
+      schemas.filter(Boolean).map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+  </head>
+  <body class="font-sans antialiased">
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-800/85 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 sm:py-3">
+        <a href="/" class="group flex min-w-0 items-center no-underline" aria-label="pictojxl home">
+          <img
+            src="/logo.png"
+            alt="pictojxl"
+            width="1000"
+            height="247"
+            class="h-[30px] w-auto max-w-[min(75vw,15rem)] object-contain object-left sm:h-[28px] sm:max-w-[16rem] md:h-[34px] md:max-w-[18rem]"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="hidden items-center gap-5 text-base text-zinc-300 md:flex" aria-label="Primary">
+          {navLinks.slice(0, 4).map((link) => (
+            <a href={link.href} class="transition hover:text-zinc-100">
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          type="button"
+          id="mobile-nav-toggle"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-100 transition hover:bg-zinc-800 md:hidden"
+          aria-controls="mobile-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          <svg
+            id="mobile-nav-icon-open"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+          <svg
+            id="mobile-nav-icon-close"
+            class="hidden h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav
+        id="mobile-nav"
+        class="hidden border-t border-white/10 bg-zinc-900/95 md:hidden"
+        aria-label="Mobile"
+        hidden
+      >
+        <div class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 sm:px-6">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="rounded-lg px-3 py-3 text-base text-zinc-200 transition hover:bg-white/5 hover:text-zinc-50"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+    </header>
+
+    <!-- Top leaderboard ad slot reserved for later AdSense rollout
+    <div class="mx-auto max-w-7xl px-4 pt-4 sm:px-6">
+      <AdSlot id="top-leaderboard" width={728} height={90} class="mx-auto max-w-[728px]" />
+    </div>
+    -->
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="mt-16 border-t border-white/10 bg-zinc-800/50">
+      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 text-base text-zinc-400 sm:px-6">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} pictojxl.com — a product of Webwise Private Company Ltd
+            (USA). Private, client-side JPEG XL conversion.
+          </p>
+          <div class="flex flex-wrap gap-x-4 gap-y-2">
+            <a href="/png-to-jxl" class="hover:text-zinc-200">PNG to JXL</a>
+            <a href="/jpg-to-jxl" class="hover:text-zinc-200">JPG to JXL</a>
+            <a href="/webp-to-jxl" class="hover:text-zinc-200">WebP to JXL</a>
+            <a href="/avif-to-jxl" class="hover:text-zinc-200">AVIF to JXL</a>
+            <a href="/jxl-to-jpg" class="hover:text-zinc-200">JXL to JPG</a>
+            <a href="/bulk-jxl-converter" class="hover:text-zinc-200">Bulk</a>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-x-4 gap-y-2 border-t border-white/5 pt-6 text-sm">
+          <a href="/about" class="hover:text-zinc-200">About</a>
+          <a href="/contact" class="hover:text-zinc-200">Contact</a>
+          <a href="/privacy-policy" class="hover:text-zinc-200">Privacy Policy</a>
+          <a href="/terms-of-service" class="hover:text-zinc-200">Terms of Service</a>
+          <a href="/cookie-policy" class="hover:text-zinc-200">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('mobile-nav-toggle');
+      const panel = document.getElementById('mobile-nav');
+      const iconOpen = document.getElementById('mobile-nav-icon-open');
+      const iconClose = document.getElementById('mobile-nav-icon-close');
+
+      function setOpen(open: boolean) {
+        if (!toggle || !panel || !iconOpen || !iconClose) return;
+        panel.classList.toggle('hidden', !open);
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      }
+
+      toggle?.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        setOpen(open);
+      });
+
+      panel?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    </script>
+  </body>
+</html>

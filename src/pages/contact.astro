@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { absoluteUrl, buildBreadcrumbLd } from '../lib/seo';
+
+const title = 'Contact Us | pictojxl.com';
+const description =
+  'Contact Webwise Private Company Ltd about pictojxl.com — email support@pictojxl.com for product, privacy, or advertising questions.';
+
+const jsonLd = [
+  buildBreadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact pictojxl.com',
+    url: absoluteUrl('/contact'),
+    about: {
+      '@type': 'Organization',
+      name: 'Webwise Private Company Ltd',
+      email: 'support@pictojxl.com',
+      url: absoluteUrl('/'),
+    },
+  },
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/contact" jsonLd={jsonLd}>
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <header class="mb-10 border-b border-white/10 pb-8">
+      <h1 class="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">Contact Us</h1>
+      <p class="mt-3 text-lg text-zinc-400">
+        pictojxl.com is a product of <strong class="font-medium text-zinc-200">Webwise Private Company Ltd</strong> (USA),
+        built by an expert team of developers. We welcome product questions, privacy inquiries, and
+        advertising-related requests.
+      </p>
+    </header>
+
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div class="rounded-2xl border border-white/10 bg-zinc-800/40 p-6">
+        <h2 class="text-lg font-semibold text-zinc-100">Email support</h2>
+        <p class="mt-2 text-base text-zinc-400">
+          The fastest way to reach us is by email. We typically respond within a few business days.
+        </p>
+        <a
+          href="mailto:support@pictojxl.com"
+          class="mt-4 inline-flex cursor-pointer rounded-xl bg-emerald-500 px-4 py-3 text-base font-semibold text-zinc-950 hover:bg-emerald-400"
+        >
+          support@pictojxl.com
+        </a>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-zinc-800/40 p-6">
+        <h2 class="text-lg font-semibold text-zinc-100">Company</h2>
+        <ul class="mt-3 space-y-2 text-base text-zinc-300">
+          <li><strong class="text-zinc-100">Legal entity:</strong> Webwise Private Company Ltd</li>
+          <li><strong class="text-zinc-100">Jurisdiction:</strong> United States</li>
+          <li><strong class="text-zinc-100">Product:</strong> pictojxl.com (PictoJXL)</li>
+          <li>
+            <strong class="text-zinc-100">Website:</strong>
+            <a class="text-emerald-400 hover:underline" href={absoluteUrl('/')}>pictojxl.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <form
+      class="mt-10 space-y-4 rounded-2xl border border-white/10 bg-zinc-800/40 p-6"
+      action="mailto:support@pictojxl.com"
+      method="post"
+      enctype="text/plain"
+    >
+      <h2 class="text-lg font-semibold text-zinc-100">Send a message</h2>
+      <p class="text-sm text-zinc-400">
+        This opens your email client with a pre-addressed message. No form data is uploaded to our
+        conversion servers.
+      </p>
+      <label class="block">
+        <span class="text-sm text-zinc-400">Your name</span>
+        <input
+          type="text"
+          name="name"
+          required
+          class="mt-1 w-full rounded-xl border border-white/10 bg-zinc-900/80 px-3 py-2.5 text-zinc-100 outline-none focus:border-emerald-500/50"
+        />
+      </label>
+      <label class="block">
+        <span class="text-sm text-zinc-400">Your email</span>
+        <input
+          type="email"
+          name="email"
+          required
+          class="mt-1 w-full rounded-xl border border-white/10 bg-zinc-900/80 px-3 py-2.5 text-zinc-100 outline-none focus:border-emerald-500/50"
+        />
+      </label>
+      <label class="block">
+        <span class="text-sm text-zinc-400">Message</span>
+        <textarea
+          name="message"
+          required
+          rows="5"
+          class="mt-1 w-full rounded-xl border border-white/10 bg-zinc-900/80 px-3 py-2.5 text-zinc-100 outline-none focus:border-emerald-500/50"
+        ></textarea>
+      </label>
+      <button
+        type="submit"
+        class="cursor-pointer rounded-xl bg-emerald-500 px-5 py-3 text-base font-semibold text-zinc-950 hover:bg-emerald-400"
+      >
+        Open email to support
+      </button>
+    </form>
+
+    <p class="mt-8 text-sm text-zinc-500">
+      Also see our
+      <a class="text-emerald-400 hover:underline" href="/privacy-policy">Privacy Policy</a>,
+      <a class="text-emerald-400 hover:underline" href="/terms-of-service">Terms of Service</a>, and
+      <a class="text-emerald-400 hover:underline" href="/about">About</a> pages.
+    </p>
+  </section>
+</Layout>

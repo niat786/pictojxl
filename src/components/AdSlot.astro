@@ -1,0 +1,42 @@
+---
+interface Props {
+  id: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  label?: string;
+}
+
+const {
+  id,
+  width = 728,
+  height = 90,
+  class: className = '',
+  label = 'Advertisement',
+} = Astro.props;
+
+const minHeight = height >= 250 ? 'min-h-[250px]' : 'min-h-[90px]';
+---
+
+<aside
+  id={id}
+  class:list={[
+    'ad-slot relative w-full overflow-hidden rounded-xl border border-white/5 bg-zinc-900/40',
+    minHeight,
+    className,
+  ]}
+  style={`min-height: ${height}px;`}
+  data-ad-slot={id}
+  data-ad-width={width}
+  data-ad-height={height}
+  aria-label={label}
+>
+  <div class="pointer-events-none absolute left-3 top-2 ad-label">{label}</div>
+  <div
+    class="flex h-full w-full items-center justify-center px-4 py-6 text-center text-xs text-zinc-600"
+    style={`min-height: ${height}px;`}
+  >
+    <!-- Replace with AdSense <ins> when publisher ID is ready -->
+    Reserved {width}×{height} ad placement
+  </div>
+</aside>

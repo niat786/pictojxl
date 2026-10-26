@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  updated?: string;
+}
+
+const {
+  title,
+  description,
+  updated = 'October 26, 2026',
+} = Astro.props;
+---
+
+<article class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+  <header class="mb-10 border-b border-white/10 pb-8">
+    <h1 class="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">{title}</h1>
+    <p class="mt-3 text-lg text-zinc-400">{description}</p>
+    <p class="mt-4 text-sm text-zinc-500">Last updated: {updated}</p>
+  </header>
+  <div
+    class="legal-prose space-y-4 text-base leading-relaxed text-zinc-300 [&_a]:text-emerald-400 [&_a]:underline-offset-2 hover:[&_a]:underline [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-zinc-100 [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-zinc-100 [&_li]:mt-1 [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-4 [&_strong]:font-medium [&_strong]:text-zinc-100 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-5"
+  >
+    <slot />
+  </div>
+</article>

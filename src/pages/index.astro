@@ -1,0 +1,63 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import SeoArticle from '../components/SeoArticle.astro';
+import JxlStudio from '../components/JxlStudio.vue';
+import {
+  absoluteUrl,
+  buildBreadcrumbLd,
+  buildFaqLd,
+  buildHowToLd,
+  buildWebApplicationLd,
+} from '../lib/seo';
+
+const entry = await getEntry('seo', 'home');
+if (!entry) throw new Error('Missing seo/home content');
+
+const {
+  title,
+  description,
+  h1,
+  subheadline,
+  dropzoneLabel,
+  acceptHint,
+  keywords,
+  faqs,
+  howToSteps,
+  breadcrumbName,
+} = entry.data;
+
+const url = absoluteUrl('/');
+const jsonLd = [
+  buildWebApplicationLd({
+    name: 'PictoJXL — Free Online JPEG XL Converter',
+    description,
+    url,
+  }),
+  buildBreadcrumbLd([{ name: breadcrumbName ?? 'Home', path: '/' }]),
+  buildFaqLd(faqs),
+  buildHowToLd({
+    name: 'How to convert images to JXL in 3 simple steps',
+    description,
+    steps: howToSteps,
+    url,
+  }),
+].filter(Boolean);
+---
+
+<Layout title={title} description={description} keywords={keywords} jsonLd={jsonLd}>
+  <JxlStudio
+    client:idle
+    headline={h1}
+    subheadline={subheadline}
+    dropzoneLabel={dropzoneLabel}
+    acceptHint={acceptHint}
+  />
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <AdSlot id="home-in-content" width={728} height={90} class="mx-auto max-w-[728px]" />
+  </div>
+
+  <SeoArticle entry={entry} />
+</Layout>

@@ -1,0 +1,84 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import SeoArticle from '../components/SeoArticle.astro';
+import JxlStudio from '../components/JxlStudio.vue';
+import {
+  absoluteUrl,
+  buildBreadcrumbLd,
+  buildFaqLd,
+  buildHowToLd,
+  buildWebApplicationLd,
+} from '../lib/seo';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('seo');
+  return entries
+    .filter((e) => e.id !== 'home')
+    .map((e) => ({
+      params: { slug: e.id },
+    }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry('seo', slug as string);
+if (!entry) throw new Error(`Missing seo content for ${slug}`);
+
+const {
+  title,
+  description,
+  h1,
+  subheadline,
+  dropzoneLabel,
+  acceptHint,
+  keywords,
+  defaultMode,
+  faqs,
+  howToSteps,
+  breadcrumbName,
+} = entry.data;
+
+const url = absoluteUrl(`/${entry.id}`);
+const jsonLd = [
+  buildWebApplicationLd({
+    name: `PictoJXL — ${h1}`,
+    description,
+    url,
+  }),
+  buildBreadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: breadcrumbName ?? h1, path: `/${entry.id}` },
+  ]),
+  buildFaqLd(faqs),
+  buildHowToLd({
+    name: howToSteps.length ? `How to use ${breadcrumbName ?? h1}` : h1,
+    description,
+    steps: howToSteps,
+    url,
+  }),
+].filter(Boolean);
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath={`/${entry.id}`}
+  keywords={keywords}
+  jsonLd={jsonLd}
+>
+  <JxlStudio
+    client:idle
+    headline={h1}
+    subheadline={subheadline}
+    dropzoneLabel={dropzoneLabel}
+    acceptHint={acceptHint}
+    defaultMode={defaultMode}
+  />
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <AdSlot id="in-content-native" width={728} height={90} class="mx-auto max-w-[728px]" />
+  </div>
+
+  <SeoArticle entry={entry} />
+</Layout>

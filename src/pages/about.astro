@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { absoluteUrl, buildBreadcrumbLd, buildWebApplicationLd } from '../lib/seo';
+
+const title = 'About pictojxl.com | Webwise Private Company Ltd';
+const description =
+  'About pictojxl.com — a private, browser-based JPEG XL converter built by Webwise Private Company Ltd (USA) and an expert team of developers.';
+
+const jsonLd = [
+  buildWebApplicationLd({
+    name: 'PictoJXL by Webwise',
+    description,
+    url: absoluteUrl('/about'),
+  }),
+  buildBreadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+  ]),
+];
+---
+
+<Layout title={title} description={description} canonicalPath="/about" jsonLd={jsonLd}>
+  <LegalPage
+    title="About pictojxl.com"
+    description="Who we are and why we built a private, zero-upload JXL conversion studio."
+  >
+    <p>
+      <strong>pictojxl.com</strong> is a product of
+      <strong>Webwise Private Company Ltd</strong>, a United States company. It is built by an
+      expert team of developers focused on high-performance, privacy-first web utilities.
+    </p>
+
+    <h2>Why this tool exists</h2>
+    <p>
+      Most online image converters ask you to upload files to a remote server. That creates privacy
+      risk, upload size caps, and slow round-trips. We built pictojxl.com to provide a fast,
+      private, zero-upload JPEG XL (JXL) conversion experience—running entirely in the browser.
+    </p>
+
+    <h2>How the WebAssembly engine works</h2>
+    <p>
+      When you drop an image, decoding and JXL encoding execute locally through WebAssembly and Web
+      Workers on your device. A Squoosh-style split inspector helps you compare quality before
+      download, and bulk mode can queue many files with ZIP export. Your photos never need to leave
+      your computer for conversion to complete.
+    </p>
+
+    <h2>What we offer</h2>
+    <ul>
+      <li>Single-image inspection and encode controls</li>
+      <li>Step-by-step and bulk queue workflows</li>
+      <li>Format-specific landing pages such as PNG→JXL, JPG→JXL, and WebP→JXL</li>
+      <li>Transparent legal pages for privacy, terms, and cookies</li>
+    </ul>
+
+    <h2>Company</h2>
+    <p>
+      <strong>Webwise Private Company Ltd</strong> (USA)<br />
+      Product: pictojxl.com — PictoJXL<br />
+      Support: <a href="mailto:support@pictojxl.com">support@pictojxl.com</a><br />
+      Contact page: <a href="/contact">/contact</a>
+    </p>
+  </LegalPage>
+</Layout>
